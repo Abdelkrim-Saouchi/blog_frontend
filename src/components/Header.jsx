@@ -17,12 +17,12 @@ const Header = () => {
       <nav>
         <ul className="flex gap-4 font-semibold">
           <li>
-            <Link to="/" className="hover:opacity-70 ">
+            <Link to="/login" className="hover:opacity-70 ">
               Login
             </Link>
           </li>
           <li>
-            <Link to="/" className="hover:opacity-70 ">
+            <Link to="/singup" className="hover:opacity-70 ">
               Sign up
             </Link>
           </li>
