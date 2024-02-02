@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-json/game-icons": "^1.1.7",
+    "@iconify-json/material-symbols": "^1.1.72",
+    "@iconify-json/mdi": "^1.1.64",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.0"
