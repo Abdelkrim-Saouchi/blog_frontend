@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 const Login = () => {
   const location = useLocation();
@@ -7,6 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [isLoginError, setIsLoginError] = useState(false);
+  const setToken = useOutletContext();
 
   const submitUser = async (e) => {
     e.preventDefault();
@@ -29,6 +30,7 @@ const Login = () => {
 
       const data = await res.json();
       localStorage.setItem("jwt-token", data.token);
+      setToken(localStorage.getItem("jwt-token"));
       navigate("/", { replace: true });
     } catch (err) {
       console.log(err);

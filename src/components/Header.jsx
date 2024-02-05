@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ token, logout }) => {
   return (
     <header className="flex flex-row items-center justify-between gap-4 border-b border-gray-200 px-4 py-2">
       <Link to="/">
@@ -16,20 +17,36 @@ const Header = () => {
       </div>
       <nav>
         <ul className="flex gap-4 font-semibold">
-          <li>
-            <Link to="/login" className="hover:opacity-70 ">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/singup" className="hover:opacity-70 ">
-              Sign up
-            </Link>
-          </li>
+          {!token && (
+            <>
+              <li>
+                <Link to="/login" className="hover:opacity-70 ">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/singup" className="hover:opacity-70 ">
+                  Sign up
+                </Link>
+              </li>
+            </>
+          )}
+          {token && (
+            <li>
+              <button className="hover:opacity-70" onClick={logout}>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
   );
+};
+
+Header.propTypes = {
+  token: PropTypes.any,
+  logout: PropTypes.func,
 };
 
 export default Header;
