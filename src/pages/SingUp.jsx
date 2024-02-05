@@ -9,7 +9,6 @@ const SingUp = () => {
   const [showMatchError, setShowMatchError] = useState(false);
   const [serverValidationErrors, setServerValidationErrors] = useState([]);
   const navigate = useNavigate();
-  console.log("errors:", serverValidationErrors);
 
   const isPasswordMatch = () => {
     return password === confirmation;
