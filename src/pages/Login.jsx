@@ -1,6 +1,15 @@
+import { useLocation } from "react-router-dom";
+
 const Login = () => {
+  const location = useLocation();
+
   return (
     <main className="flex flex-col items-center p-4">
+      {location.state && (
+        <p className="mb-4 text-xl font-semibold text-green-600">
+          {location.state.msg}
+        </p>
+      )}
       <h2 className="mb-4 text-2xl font-bold">Login:</h2>
       <form
         action=""
