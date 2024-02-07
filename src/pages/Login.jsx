@@ -7,6 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [isLoginError, setIsLoginError] = useState(false);
+  const [isServerError, setIsServerError] = useState(false);
   const setToken = useOutletContext();
 
   const submitUser = async (e) => {
@@ -24,14 +25,16 @@ const Login = () => {
         }),
       });
 
-      if (!res.ok) {
-        return setIsLoginError(true);
+      if (res.status === 401) {
+        setIsLoginError(true);
+      } else if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem("jwt-token", data.token);
+        setToken(localStorage.getItem("jwt-token"));
+        navigate("/", { replace: true });
+      } else {
+        setIsServerError(true);
       }
-
-      const data = await res.json();
-      localStorage.setItem("jwt-token", data.token);
-      setToken(localStorage.getItem("jwt-token"));
-      navigate("/", { replace: true });
     } catch (err) {
       console.log(err);
     }
@@ -49,6 +52,10 @@ const Login = () => {
 
       {isLoginError && (
         <p className="mb-4 text-red-600">Email or password incorrect!</p>
+      )}
+
+      {isServerError && (
+        <p className="mb-4 text-red-600">Something gone Wrong! try later.</p>
       )}
 
       <form
