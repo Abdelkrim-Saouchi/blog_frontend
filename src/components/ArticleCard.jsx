@@ -1,15 +1,12 @@
-const ArticleCard = () => {
-  const post = {
-    author: "Krimothiazine",
-    title: "First article ever!",
-    createdAt: "Fab 02, 2024",
-    topic: "Web Dev",
-    readTime: 3,
-  };
+import PropTypes from "prop-types";
+
+const ArticleCard = ({ post }) => {
   return (
     <div className="border-b border-gray-200 py-6">
       <div className="">
-        <span className="font-semibold ">{post.author}</span>
+        <span className="font-semibold ">
+          {post.author.firstName + " " + post.author.lastName}
+        </span>
         <span className="ml-2 text-gray-500">{post.createdAt}</span>
       </div>
       <div className="pb-8 pt-2">
@@ -18,11 +15,19 @@ const ArticleCard = () => {
         </h2>
       </div>
       <div>
-        <span className="rounded-lg bg-gray-100 p-2">{post.topic}</span>
+        {post.topics.map((topic) => (
+          <span key={topic.name} className="rounded-lg bg-gray-100 p-2">
+            {topic.name}
+          </span>
+        ))}
         <span className="ml-4 text-gray-500">{post.readTime} min read</span>
       </div>
     </div>
   );
+};
+
+ArticleCard.propTypes = {
+  post: PropTypes.object,
 };
 
 export default ArticleCard;
