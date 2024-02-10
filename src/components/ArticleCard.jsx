@@ -7,7 +7,7 @@ const ArticleCard = ({ post }) => {
         <span className="font-semibold ">
           {post.author.firstName + " " + post.author.lastName}
         </span>
-        <span className="ml-2 text-gray-500">{post.createdAt}</span>
+        <span className="ml-2 text-gray-500">{post.creationDate}</span>
       </div>
       <div className="pb-8 pt-2">
         <h2 className="text-2xl font-bold ">

@@ -2,15 +2,18 @@ import { useLoaderData } from "react-router-dom";
 import ArticleCard from "../components/ArticleCard";
 
 export const loader = async () => {
-  const res = await fetch("http://localhost:3000/api/v1/posts", {
-    method: "GET",
-  });
-  if (res.ok) {
-    const data = await res.json();
-    console.log(data);
-    return data;
+  try {
+    const res = await fetch("http://localhost:3000/api/v1/posts");
+    if (res.ok) {
+      const data = await res.json();
+      console.log(data);
+      return data;
+    }
+    return [];
+  } catch (err) {
+    console.log(err);
+    return null;
   }
-  return [];
 };
 
 const Home = () => {
