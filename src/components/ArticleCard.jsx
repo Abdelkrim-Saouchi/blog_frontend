@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const ArticleCard = ({ post }) => {
   return (
@@ -11,7 +12,7 @@ const ArticleCard = ({ post }) => {
       </div>
       <div className="pb-8 pt-2">
         <h2 className="text-2xl font-bold ">
-          <a href="#">{post.title}</a>
+          <Link to={`/articles/${post._id}`}>{post.title}</Link>
         </h2>
       </div>
       <div>
