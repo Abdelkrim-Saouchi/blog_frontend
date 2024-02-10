@@ -7,12 +7,14 @@ export const loader = async () => {
     if (res.ok) {
       const data = await res.json();
       console.log(data);
+      console.log(res);
       return data;
     }
-    return [];
+
+    const err = new Error(`No data: ${res.statusText} ${res.status}`);
+    throw err;
   } catch (err) {
-    console.log(err);
-    return null;
+    return err;
   }
 };
 
