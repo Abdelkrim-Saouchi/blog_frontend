@@ -148,6 +148,8 @@ const ArticlePage = () => {
           },
         });
         if (res.ok) {
+          const { likeId } = await res.json();
+          setLikeId(likeId);
           return setLikeClicked(true);
         }
         if (res.status === 404) {
