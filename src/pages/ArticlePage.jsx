@@ -21,12 +21,12 @@ const ArticlePage = () => {
   const [likes, setLikes] = useState(article.likes);
   const [likeClicked, setLikeClicked] = useState(false);
   const { id } = useParams();
-  const token = localStorage.getItem("jwt-token");
   const [likeId, setLikeId] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [error, setError] = useState(false);
 
   const addLike = async () => {
+    const token = localStorage.getItem("jwt-token");
     try {
       const res = await fetch(
         `http://localhost:3000/api/v1/posts/${id}/likes`,
@@ -53,6 +53,7 @@ const ArticlePage = () => {
   };
 
   const removeLike = async () => {
+    const token = localStorage.getItem("jwt-token");
     try {
       const res = await fetch(
         `http://localhost:3000/api/v1/posts/${id}/likes/${likeId}`,
@@ -97,7 +98,8 @@ const ArticlePage = () => {
       return;
     }
     const data = await removeLike();
-    if (data) {
+
+    if (data?.success) {
       setLikeClicked(false);
       return;
     }
@@ -138,6 +140,7 @@ const ArticlePage = () => {
 
   useEffect(() => {
     const fetchLike = async () => {
+      const token = localStorage.getItem("jwt-token");
       try {
         const res = await fetch(
           `http://localhost:3000/api/v1/posts/likes/status/${id}`,
@@ -164,7 +167,7 @@ const ArticlePage = () => {
     };
 
     fetchLike();
-  }, [id, token]);
+  }, [id]);
 
   return (
     <main className="flex flex-col items-center px-4 py-2 pt-4 text-xl">
