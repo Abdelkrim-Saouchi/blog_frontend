@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import LikesCommentsBar from "../components/LikesCommentsBar";
 
 export const loader = async ({ params }) => {
@@ -19,6 +19,70 @@ const ArticlePage = () => {
   const article = useLoaderData();
   const [comments, setComments] = useState(article.comments);
   const [likes, setLikes] = useState(article.likes);
+  const [likeClicked, setLikeClicked] = useState(false);
+  const { id } = useParams();
+  const token = localStorage.getItem("jwt-token");
+  const [likeId, setLikeId] = useState(null);
+
+  const addLike = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/v1/posts/${id}/likes`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setLikeId(data.likeId);
+        return data;
+      }
+      return null;
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const removeLike = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/v1/posts/${id}/likes/${likeId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      if (res.ok) {
+        const data = await res.json();
+        return data;
+      }
+      return null;
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const onLike = async () => {
+    if (!likeClicked) {
+      const data = await addLike();
+      if (data) {
+        setLikeClicked(true);
+        return;
+      }
+    }
+    const data = await removeLike();
+    if (data) {
+      setLikeClicked(false);
+      return;
+    }
+  };
 
   return (
     <main className="flex flex-col items-center px-4 py-2 pt-4 text-xl">
@@ -36,6 +100,8 @@ const ArticlePage = () => {
         <LikesCommentsBar
           likesNumber={likes.length}
           commentsNumber={comments.length}
+          likeClicked={likeClicked}
+          onLike={onLike}
         />
         <div className="leading-relaxed">
           <p>{article.content}</p>
@@ -50,6 +116,8 @@ const ArticlePage = () => {
         <LikesCommentsBar
           likesNumber={likes.length}
           commentsNumber={comments.length}
+          likeClicked={likeClicked}
+          onLike={onLike}
         />
       </div>
     </main>

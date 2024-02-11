@@ -22,7 +22,7 @@ const SingUp = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/v1/user/signup", {
+      const res = await fetch("http://localhost:3000/api/v1/users/signup", {
         mode: "cors",
         method: "POST",
         headers: {
