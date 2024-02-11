@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { hostname } from "../globals/hostname";
 
 const SingUp = () => {
   const [username, setUsername] = useState("");
@@ -22,7 +23,7 @@ const SingUp = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/v1/users/signup", {
+      const res = await fetch(`${hostname}/api/v1/users/signup`, {
         mode: "cors",
         method: "POST",
         headers: {

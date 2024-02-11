@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { hostname } from "../globals/hostname";
 
 const Login = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3000/api/v1/users/login", {
+      const res = await fetch(`${hostname}/api/v1/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

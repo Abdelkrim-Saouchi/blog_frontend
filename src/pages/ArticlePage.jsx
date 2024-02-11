@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import LikesCommentsBar from "../components/LikesCommentsBar";
+import { hostname } from "../globals/hostname";
 
 export const loader = async ({ params }) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/v1/posts/${params.id}`);
+    const res = await fetch(`${hostname}/api/v1/posts/${params.id}`);
     if (res.ok) {
       const data = await res.json();
       return data;
@@ -28,16 +29,13 @@ const ArticlePage = () => {
   const addLike = async () => {
     const token = localStorage.getItem("jwt-token");
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/v1/posts/${id}/likes`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+      const res = await fetch(`${hostname}/api/v1/posts/${id}/likes`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
       if (res.ok) {
         const data = await res.json();
         setLikeId(data.likeId);
@@ -56,7 +54,7 @@ const ArticlePage = () => {
     const token = localStorage.getItem("jwt-token");
     try {
       const res = await fetch(
-        `http://localhost:3000/api/v1/posts/${id}/likes/${likeId}`,
+        `${hostname}/api/v1/posts/${id}/likes/${likeId}`,
         {
           method: "DELETE",
           headers: {
@@ -122,7 +120,7 @@ const ArticlePage = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/v1/posts/${id}`);
+        const res = await fetch(`${hostname}/api/v1/posts/${id}`);
         if (res.ok) {
           const data = await res.json();
           setLikes(data.likes);
@@ -142,16 +140,13 @@ const ArticlePage = () => {
     const fetchLike = async () => {
       const token = localStorage.getItem("jwt-token");
       try {
-        const res = await fetch(
-          `http://localhost:3000/api/v1/posts/likes/status/${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
+        const res = await fetch(`${hostname}/api/v1/posts/likes/status/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         if (res.ok) {
           return setLikeClicked(true);
         }

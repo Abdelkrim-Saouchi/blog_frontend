@@ -1,9 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import ArticleCard from "../components/ArticleCard";
+import { hostname } from "../globals/hostname";
 
 export const loader = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/v1/posts");
+    const res = await fetch(`${hostname}/api/v1/posts`);
     if (res.ok) {
       const data = await res.json();
       console.log(data);
