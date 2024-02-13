@@ -15,6 +15,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         loader: homeLoader,
+        errorElement: <ErrorPage />,
       },
       {
         path: "/singup",

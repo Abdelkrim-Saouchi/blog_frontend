@@ -1,21 +1,9 @@
 import { useLoaderData } from "react-router-dom";
+import { getArticles } from "../api/getArticles";
 import ArticleCard from "../components/ArticleCard";
-import { hostname } from "../globals/hostname";
 
 export const loader = async () => {
-  try {
-    const res = await fetch(`${hostname}/api/v1/posts`);
-    if (res.ok) {
-      const data = await res.json();
-      console.log(data);
-      return data;
-    }
-
-    const err = new Error(`No data: ${res.statusText} ${res.status}`);
-    throw err;
-  } catch (err) {
-    return err;
-  }
+  return await getArticles();
 };
 
 const Home = () => {
