@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useFetcher } from "react-router-dom";
 
-const Header = ({ token, logout }) => {
+const Header = ({ token }) => {
   const menuRef = useRef(null);
+  const fetcher = useFetcher();
 
   const toggleMenu = () => {
     menuRef.current.classList.toggle("hidden");
@@ -40,9 +41,9 @@ const Header = ({ token, logout }) => {
           )}
           {token && (
             <li>
-              <button className="hover:opacity-70" onClick={logout}>
-                Logout
-              </button>
+              <fetcher.Form method="post" action="/">
+                <button className="hover:opacity-70">Logout</button>
+              </fetcher.Form>
             </li>
           )}
         </ul>
@@ -70,7 +71,9 @@ const Header = ({ token, logout }) => {
           )}
           {token && (
             <li onClick={toggleMenu} className="p-2 hover:bg-slate-200">
-              <button onClick={logout}>Logout</button>
+              <fetcher.Form method="post" action="/">
+                <button className="hover:opacity-70">Logout</button>
+              </fetcher.Form>
             </li>
           )}
         </ul>
@@ -81,7 +84,7 @@ const Header = ({ token, logout }) => {
 
 Header.propTypes = {
   token: PropTypes.any,
-  logout: PropTypes.func,
+  // logout: PropTypes.func,
 };
 
 export default Header;

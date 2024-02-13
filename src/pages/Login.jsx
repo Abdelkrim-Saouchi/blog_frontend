@@ -1,45 +1,31 @@
-import { useState } from "react";
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-import { hostname } from "../globals/hostname";
+import { Form, redirect, useActionData, useLocation } from "react-router-dom";
+import { login } from "../api/login";
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const error = {};
+
+  const res = await login(formData);
+
+  if (res.ok) {
+    const data = await res.json();
+    localStorage.setItem("jwt-token", data.token);
+    return redirect("/");
+  }
+  if (res.status === 401) {
+    error.isLoginError = true;
+    return error;
+  }
+  if (res.status === 400) {
+    const data = await res.json();
+    error.serverErrors = data.errors;
+    return error;
+  }
+};
 
 const Login = () => {
   const location = useLocation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const [isLoginError, setIsLoginError] = useState(false);
-  const [isServerError, setIsServerError] = useState(false);
-  const setToken = useOutletContext();
-
-  const submitUser = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetch(`${hostname}/api/v1/users/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-
-      if (res.status === 401) {
-        setIsLoginError(true);
-      } else if (res.ok) {
-        const data = await res.json();
-        localStorage.setItem("jwt-token", data.token);
-        setToken(localStorage.getItem("jwt-token"));
-        navigate("/", { replace: true });
-      } else {
-        setIsServerError(true);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const error = useActionData();
 
   return (
     <main className="flex flex-col items-center p-4">
@@ -51,29 +37,31 @@ const Login = () => {
 
       <h2 className="mb-4 text-2xl font-bold">Login:</h2>
 
-      {isLoginError && (
+      {error?.isLoginError && (
         <p className="mb-4 text-red-600">Email or password incorrect!</p>
       )}
 
-      {isServerError && (
-        <p className="mb-4 text-red-600">Something gone Wrong! try later.</p>
+      {error?.serverErrors?.length > 0 && (
+        <ul className="mb-4 list-inside list-disc text-red-600">
+          {error.serverErrors.map((element, index) => {
+            return <li key={index}>{element.msg}</li>;
+          })}
+        </ul>
       )}
 
-      <form
-        action=""
+      <Form
         method="post"
         className="flex flex-col items-center rounded-lg border border-gray-200 p-4 md:px-8"
-        onSubmit={submitUser}
       >
         <div className="mb-4 flex flex-col">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
+            name="email"
             placeholder="example@mail.com"
             className="rounded bg-gray-100 p-2"
             required
-            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-4 flex flex-col">
@@ -81,16 +69,16 @@ const Login = () => {
           <input
             type="password"
             id="password"
+            name="password"
             className="rounded bg-gray-100 p-2"
             required
-            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
         <button type="submit" className="rounded-2xl bg-black p-3 text-white">
           Login
         </button>
-      </form>
+      </Form>
     </main>
   );
 };

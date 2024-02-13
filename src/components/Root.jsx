@@ -1,26 +1,23 @@
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, redirect, useLoaderData } from "react-router-dom";
 import Header from "./Header";
 
+export const loader = () => {
+  const token = localStorage.getItem("jwt-token");
+  return token;
+};
+
+export const action = async () => {
+  localStorage.removeItem("jwt-token");
+  return redirect("/");
+};
+
 const Root = () => {
-  const [token, setToken] = useState(null);
-
-  const logout = () => {
-    localStorage.removeItem("jwt-token");
-    setToken(null);
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt-token");
-    if (token) {
-      setToken(token);
-    }
-  }, []);
+  const token = useLoaderData();
 
   return (
     <>
-      <Header token={token} logout={logout} />
-      <Outlet context={setToken} />
+      <Header token={token} />
+      <Outlet />
     </>
   );
 };
