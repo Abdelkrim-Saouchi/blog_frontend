@@ -4,7 +4,7 @@ import ArticlePage, { loader as articleLoader } from "./pages/ArticlePage";
 import ErrorPage from "./pages/ErrorPage";
 import Home, { loader as homeLoader } from "./pages/Home";
 import Login from "./pages/Login";
-import SingUp from "./pages/SingUp";
+import SingUp, { action as signUpAction } from "./pages/SingUp";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/singup",
         element: <SingUp />,
+        action: signUpAction,
       },
       {
         path: "/login",

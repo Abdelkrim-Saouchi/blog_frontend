@@ -43,9 +43,9 @@ const Login = () => {
 
   return (
     <main className="flex flex-col items-center p-4">
-      {location.state && (
+      {location.state?._isRedirect && (
         <p className="mb-4 text-xl font-semibold text-green-600">
-          {location.state.msg}
+          Your Sign up was successful. You can login now.
         </p>
       )}
 
