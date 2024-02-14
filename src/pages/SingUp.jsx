@@ -1,4 +1,4 @@
-import { Form, redirect, useActionData } from "react-router-dom";
+import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createUser } from "../api/createUser";
 
 export const action = async ({ request }) => {
@@ -28,6 +28,8 @@ export const action = async ({ request }) => {
 
 const SingUp = () => {
   const error = useActionData();
+  const navigation = useNavigation();
+  const busy = navigation.state === "submitting";
 
   return (
     <main className="flex flex-col items-center p-4">
@@ -91,8 +93,19 @@ const SingUp = () => {
             required
           />
         </div>
-        <button type="submit" className="rounded-2xl bg-black p-3 text-white">
-          Register
+        <button
+          type="submit"
+          disabled={busy}
+          className="flex items-center gap-2 rounded-2xl bg-black p-3 text-white"
+        >
+          {busy ? (
+            <>
+              <span className="icon-[ph--spinner-gap-light] animate-spin"></span>
+              Processing
+            </>
+          ) : (
+            "Register"
+          )}
         </button>
       </Form>
     </main>

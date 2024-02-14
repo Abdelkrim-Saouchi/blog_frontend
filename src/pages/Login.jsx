@@ -1,4 +1,10 @@
-import { Form, redirect, useActionData, useLocation } from "react-router-dom";
+import {
+  Form,
+  redirect,
+  useActionData,
+  useLocation,
+  useNavigation,
+} from "react-router-dom";
 import { login } from "../api/login";
 
 export const action = async ({ request }) => {
@@ -30,6 +36,8 @@ export const action = async ({ request }) => {
 const Login = () => {
   const location = useLocation();
   const error = useActionData();
+  const navigation = useNavigation();
+  const busy = navigation.state === "submitting";
 
   return (
     <main className="flex flex-col items-center p-4">
@@ -85,8 +93,20 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit" className="rounded-2xl bg-black p-3 text-white">
-          Login
+        <button
+          type="submit"
+          disabled={busy}
+          className="flex items-center gap-2 rounded-2xl bg-black p-3 text-white"
+        >
+          {busy ? (
+            <>
+              {" "}
+              <span className="icon-[ph--spinner-gap-light] animate-spin"></span>
+              Logging{" "}
+            </>
+          ) : (
+            "Login"
+          )}
         </button>
       </Form>
     </main>

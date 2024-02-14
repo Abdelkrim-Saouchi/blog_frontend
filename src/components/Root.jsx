@@ -1,4 +1,9 @@
-import { Outlet, redirect, useLoaderData } from "react-router-dom";
+import {
+  Outlet,
+  redirect,
+  useLoaderData,
+  useNavigation,
+} from "react-router-dom";
 import Header from "./Header";
 
 export const loader = () => {
@@ -13,11 +18,21 @@ export const action = async () => {
 
 const Root = () => {
   const token = useLoaderData();
+  const navigation = useNavigation();
 
   return (
     <>
       <Header token={token} />
-      <Outlet />
+
+      <div
+        className={
+          navigation.state === "loading"
+            ? "opacity-25 transition-opacity delay-200 duration-200"
+            : ""
+        }
+      >
+        <Outlet />
+      </div>
     </>
   );
 };
