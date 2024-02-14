@@ -84,7 +84,6 @@ const Header = ({ token }) => {
 
 Header.propTypes = {
   token: PropTypes.any,
-  // logout: PropTypes.func,
 };
 
 export default Header;

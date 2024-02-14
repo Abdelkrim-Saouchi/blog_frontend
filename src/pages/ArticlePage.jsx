@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { getArticle } from "../api/getArticle";
 import LikesCommentsBar from "../components/LikesCommentsBar";
 import { hostname } from "../globals/hostname";
 
 export const loader = async ({ params }) => {
-  try {
-    const res = await fetch(`${hostname}/api/v1/posts/${params.id}`);
-    if (res.ok) {
-      const data = await res.json();
-      return data;
-    }
-    return new Error(`No data: ${res.statusText} ${res.status}`);
-  } catch (err) {
-    return err;
-  }
+  return await getArticle(params.id);
 };
 
 const ArticlePage = () => {
