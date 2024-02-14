@@ -21,6 +21,10 @@ export const action = async ({ request }) => {
     error.serverErrors = data.errors;
     return error;
   }
+  if (res.status === 500) {
+    error.isInternalError = true;
+    return error;
+  }
 };
 
 const Login = () => {
@@ -47,6 +51,12 @@ const Login = () => {
             return <li key={index}>{element.msg}</li>;
           })}
         </ul>
+      )}
+
+      {error?.isInternalError && (
+        <p className="mb-4 text-red-600">
+          Some thing wrong happened! check if you are signed up.
+        </p>
       )}
 
       <Form

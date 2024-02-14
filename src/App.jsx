@@ -3,7 +3,10 @@ import Root, {
   action as RootAction,
   loader as RootLoader,
 } from "./components/Root";
-import ArticlePage, { loader as articleLoader } from "./pages/ArticlePage";
+import ArticlePage, {
+  action as articleAction,
+  loader as articleLoader,
+} from "./pages/ArticlePage";
 import ErrorPage from "./pages/ErrorPage";
 import Home, { loader as homeLoader } from "./pages/Home";
 import Login, { action as loginAction } from "./pages/Login";
@@ -37,6 +40,8 @@ const router = createBrowserRouter([
         path: "/articles/:id",
         element: <ArticlePage />,
         loader: articleLoader,
+        action: articleAction,
+        errorElement: <ErrorPage />,
       },
     ],
   },
