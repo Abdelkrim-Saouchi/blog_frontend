@@ -24,7 +24,7 @@ const Header = ({ token }) => {
         />
       </div>
       <nav className="hidden md:block">
-        <ul className="flex gap-4 font-semibold">
+        <ul className="flex gap-6 font-semibold">
           {!token && (
             <>
               <li>
@@ -42,7 +42,10 @@ const Header = ({ token }) => {
           {token && (
             <li>
               <fetcher.Form method="post" action="/">
-                <button className="hover:opacity-70">Logout</button>
+                <button className="flex items-center gap-1 hover:opacity-70">
+                  Logout
+                  <span className="icon-[mdi--exit-run] text-xl"></span>
+                </button>
               </fetcher.Form>
             </li>
           )}
@@ -72,7 +75,10 @@ const Header = ({ token }) => {
           {token && (
             <li onClick={toggleMenu} className="p-2 hover:bg-slate-200">
               <fetcher.Form method="post" action="/">
-                <button className="hover:opacity-70">Logout</button>
+                <button className="flex items-center gap-1 hover:opacity-70">
+                  Logout
+                  <span className="icon-[mdi--exit-run] text-xl"></span>
+                </button>
               </fetcher.Form>
             </li>
           )}

@@ -63,7 +63,7 @@ const Login = () => {
 
       {error?.isInternalError && (
         <p className="mb-4 text-red-600">
-          Some thing wrong happened! check if you are signed up.
+          Something wrong happened! check if you are signed up.
         </p>
       )}
 
