@@ -3,6 +3,7 @@ import { createLike } from "../api/createLike";
 import { getArticle } from "../api/getArticle";
 import { getLikeStatus } from "../api/getLikeStatus";
 import { removeLike } from "../api/removeLike";
+import CommentsSection from "../components/CommentsSection";
 import LikesCommentsBar from "../components/LikesCommentsBar";
 
 export const loader = async ({ params }) => {
@@ -62,6 +63,7 @@ const ArticlePage = () => {
           likesNumber={article.likes.length}
           commentsNumber={article.comments.length}
         />
+        <CommentsSection />
       </div>
     </main>
   );
