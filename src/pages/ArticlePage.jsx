@@ -25,7 +25,7 @@ export const action = async ({ request, params }) => {
   if (formData.get("liked") === "yes") {
     const likeId = formData.get("likeId");
 
-    return removeLike(params.id, likeId, token);
+    return await removeLike(params.id, likeId, token);
   }
 };
 
@@ -63,7 +63,7 @@ const ArticlePage = () => {
           likesNumber={article.likes.length}
           commentsNumber={article.comments.length}
         />
-        <CommentsSection />
+        <CommentsSection comments={article.comments} />
       </div>
     </main>
   );

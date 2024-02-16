@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Comment from "./Comment";
 
-const CommentsSection = () => {
+const CommentsSection = ({ comments }) => {
   return (
     <div>
       <form method="post" className="mb-6 flex resize-y flex-col gap-2">
@@ -11,9 +11,7 @@ const CommentsSection = () => {
           cols="30"
           rows="5"
           className="rounded border border-gray-200 p-3"
-        >
-          {" "}
-        </textarea>
+        ></textarea>
         <button
           type="submit"
           className="self-start rounded bg-black p-3 text-white"
@@ -23,14 +21,16 @@ const CommentsSection = () => {
       </form>
 
       <div className="mb-6 flex flex-col gap-4">
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment) => (
+          <Comment key={comment._id} comment={comment} />
+        ))}
       </div>
     </div>
   );
 };
 
-CommentsSection.propTypes = {};
+CommentsSection.propTypes = {
+  comments: PropTypes.array,
+};
 
 export default CommentsSection;
