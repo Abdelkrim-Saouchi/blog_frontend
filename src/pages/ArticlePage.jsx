@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { createComment } from "../api/createComment";
 import { createLike } from "../api/createLike";
 import { getArticle } from "../api/getArticle";
 import { getLikeStatus } from "../api/getLikeStatus";
@@ -26,6 +27,12 @@ export const action = async ({ request, params }) => {
     const likeId = formData.get("likeId");
 
     return await removeLike(params.id, likeId, token);
+  }
+
+  // create comment on article
+  if (formData.get("commentBtn") === "create") {
+    const content = formData.get("commentText");
+    return await createComment(params.id, token, content);
   }
 };
 

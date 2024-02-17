@@ -1,24 +1,52 @@
 import PropTypes from "prop-types";
+import { useFetcher, useParams } from "react-router-dom";
 import Comment from "./Comment";
 
 const CommentsSection = ({ comments }) => {
+  const { id } = useParams();
+  const fetcher = useFetcher();
+  console.log(fetcher);
+  const busy = fetcher.state === "submitting";
+  const isOk = fetcher.data ? fetcher.data.ok : true;
+
   return (
     <div>
-      <form method="post" className="mb-6 flex resize-y flex-col gap-2">
+      <fetcher.Form
+        method="post"
+        action={`/articles/${id}`}
+        className="mb-6 flex resize-y flex-col gap-2"
+      >
         <textarea
-          name="comment"
+          name="commentText"
           id="comment"
           cols="30"
           rows="5"
           className="rounded border border-gray-200 p-3"
+          required
+          disabled={busy}
         ></textarea>
         <button
           type="submit"
-          className="self-start rounded bg-black p-3 text-white"
+          name="commentBtn"
+          value="create"
+          disabled={busy}
+          className="flex items-center gap-2 self-start rounded bg-black p-3 text-white"
         >
-          Submit
+          {busy ? (
+            <>
+              <span className="icon-[ph--spinner-gap-light] animate-spin"></span>
+              Submitting
+            </>
+          ) : (
+            "Submit"
+          )}
         </button>
-      </form>
+      </fetcher.Form>
+      {!isOk && (
+        <p className="mb-4 text-red-600">
+          Something wrong happened! Try later.
+        </p>
+      )}
 
       <div className="mb-6 flex flex-col gap-4">
         {comments.map((comment) => (
