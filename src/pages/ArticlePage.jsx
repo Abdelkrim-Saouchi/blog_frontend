@@ -59,10 +59,7 @@ const ArticlePage = () => {
             </span>
           ))}
         </div>
-        <LikesCommentsBar
-          likesNumber={article.likes.length}
-          commentsNumber={article.comments.length}
-        />
+
         <CommentsSection comments={article.comments} />
       </div>
     </main>
