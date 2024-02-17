@@ -16,6 +16,7 @@ export const action = async ({ request }) => {
   if (res.ok) {
     const data = await res.json();
     localStorage.setItem("jwt-token", data.token);
+    localStorage.setItem("userId", data.userId);
     return redirect("/");
   }
   if (res.status === 401) {

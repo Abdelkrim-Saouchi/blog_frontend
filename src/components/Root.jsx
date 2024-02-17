@@ -13,6 +13,7 @@ export const loader = () => {
 
 export const action = async () => {
   localStorage.removeItem("jwt-token");
+  localStorage.removeItem("userId");
   return redirect("/");
 };
 

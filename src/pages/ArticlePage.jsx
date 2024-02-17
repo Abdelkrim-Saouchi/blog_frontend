@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import { createComment } from "../api/createComment";
 import { createLike } from "../api/createLike";
 import { getArticle } from "../api/getArticle";
@@ -14,6 +14,7 @@ export const loader = async ({ params }) => {
 };
 
 export const action = async ({ request, params }) => {
+  console.log("run aritcle");
   const formData = await request.formData();
   const token = localStorage.getItem("jwt-token");
 
@@ -34,13 +35,18 @@ export const action = async ({ request, params }) => {
     const content = formData.get("commentText");
     return await createComment(params.id, token, content);
   }
+
+  // // delete comment on article
+  // if (formData.get("commentBtn") === "delete") {
+
+  // }
 };
 
 const ArticlePage = () => {
   const { article } = useLoaderData();
 
   return (
-    <main className="flex flex-col items-center px-4 py-2 pt-4 text-xl">
+    <main className="relative flex flex-col items-center px-4 py-2 pt-4 text-xl">
       <div className="md:w-2/4">
         <h2 className="my-6 text-6xl font-bold">{article.title}</h2>
         <div>
@@ -69,6 +75,7 @@ const ArticlePage = () => {
 
         <CommentsSection comments={article.comments} />
       </div>
+      <Outlet />
     </main>
   );
 };
