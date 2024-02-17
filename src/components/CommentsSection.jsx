@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
-import { useFetcher, useParams } from "react-router-dom";
+import {
+  Link,
+  useFetcher,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 import Comment from "./Comment";
 
 const CommentsSection = ({ comments }) => {
   const { id } = useParams();
+  const token = useOutletContext();
   const fetcher = useFetcher();
   console.log(fetcher);
   const busy = fetcher.state === "submitting";
@@ -11,37 +17,51 @@ const CommentsSection = ({ comments }) => {
 
   return (
     <div>
-      <fetcher.Form
-        method="post"
-        action={`/articles/${id}`}
-        className="mb-6 flex resize-y flex-col gap-2"
-      >
-        <textarea
-          name="commentText"
-          id="comment"
-          cols="30"
-          rows="5"
-          className="rounded border border-gray-200 p-3"
-          required
-          disabled={busy}
-        ></textarea>
-        <button
-          type="submit"
-          name="commentBtn"
-          value="create"
-          disabled={busy}
-          className="flex items-center gap-2 self-start rounded bg-black p-3 text-white"
+      {token && (
+        <fetcher.Form
+          method="post"
+          action={`/articles/${id}`}
+          className="mb-6 flex resize-y flex-col gap-2"
         >
-          {busy ? (
-            <>
-              <span className="icon-[ph--spinner-gap-light] animate-spin"></span>
-              Submitting
-            </>
-          ) : (
-            "Submit"
-          )}
-        </button>
-      </fetcher.Form>
+          <textarea
+            name="commentText"
+            id="comment"
+            cols="30"
+            rows="5"
+            className="rounded border border-gray-200 p-3"
+            required
+            disabled={busy}
+          ></textarea>
+          <button
+            type="submit"
+            name="commentBtn"
+            value="create"
+            disabled={busy}
+            className="flex items-center gap-2 self-start rounded bg-black p-3 text-white"
+          >
+            {busy ? (
+              <>
+                <span className="icon-[ph--spinner-gap-light] animate-spin"></span>
+                Submitting
+              </>
+            ) : (
+              "Submit"
+            )}
+          </button>
+        </fetcher.Form>
+      )}
+
+      {!token && (
+        <div className="mb-4 rounded border border-red-200 p-3 text-center text-red-600">
+          <p className="mb-4">
+            You are not log in. You must log in to comment this article
+          </p>
+          <Link to="/login" className="rounded bg-black p-2 text-white">
+            Log in
+          </Link>
+        </div>
+      )}
+
       {!isOk && (
         <p className="mb-4 text-red-600">
           Something wrong happened! Try later.

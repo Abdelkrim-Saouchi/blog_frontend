@@ -31,7 +31,7 @@ const Root = () => {
             : ""
         }
       >
-        <Outlet />
+        <Outlet context={token} />
       </div>
     </>
   );
