@@ -11,7 +11,6 @@ const CommentsSection = ({ comments }) => {
   const { id } = useParams();
   const token = useOutletContext();
   const fetcher = useFetcher();
-  console.log(fetcher);
   const busy = fetcher.state === "submitting";
   const isOk = fetcher.data ? fetcher.data.ok : true;
 

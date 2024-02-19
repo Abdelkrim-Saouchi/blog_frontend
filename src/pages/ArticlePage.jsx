@@ -14,7 +14,6 @@ export const loader = async ({ params }) => {
 };
 
 export const action = async ({ request, params }) => {
-  console.log("run aritcle");
   const formData = await request.formData();
   const token = localStorage.getItem("jwt-token");
 
