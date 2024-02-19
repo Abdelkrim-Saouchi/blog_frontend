@@ -79,8 +79,9 @@ const Login = () => {
             id="email"
             name="email"
             placeholder="example@mail.com"
-            className="rounded bg-gray-100 p-2"
             required
+            autoComplete="username"
+            className="rounded bg-gray-100 p-2"
           />
         </div>
         <div className="mb-4 flex flex-col">
@@ -89,8 +90,9 @@ const Login = () => {
             type="password"
             id="password"
             name="password"
-            className="rounded bg-gray-100 p-2"
             required
+            autoComplete="current-password"
+            className="rounded bg-gray-100 p-2"
           />
         </div>
 

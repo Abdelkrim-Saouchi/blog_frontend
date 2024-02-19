@@ -58,8 +58,9 @@ const SingUp = () => {
             id="username"
             name="username"
             placeholder="krimothiazine"
-            className="rounded bg-gray-100 p-2"
             required
+            autoComplete="username"
+            className="rounded bg-gray-100 p-2"
           />
         </div>
         <div className="mb-4 flex flex-col">
@@ -79,8 +80,9 @@ const SingUp = () => {
             type="password"
             id="password"
             name="password"
-            className="rounded bg-gray-100 p-2"
             required
+            autoComplete="new-password"
+            className="rounded bg-gray-100 p-2"
           />
         </div>
         <div className="mb-4 flex flex-col">
@@ -89,8 +91,9 @@ const SingUp = () => {
             type="password"
             id="passwordConfirmation"
             name="confirmation"
-            className="rounded bg-gray-100 p-2"
             required
+            autoComplete="new-password"
+            className="rounded bg-gray-100 p-2"
           />
         </div>
         <button
