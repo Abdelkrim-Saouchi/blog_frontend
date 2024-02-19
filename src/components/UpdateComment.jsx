@@ -61,7 +61,6 @@ const UpdateComment = () => {
           <textarea
             name="commentText"
             id="comment"
-            cols="30"
             rows="5"
             defaultValue={data.content}
             className="rounded border border-gray-200 p-3"

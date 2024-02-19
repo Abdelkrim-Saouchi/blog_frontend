@@ -25,7 +25,6 @@ const CommentsSection = ({ comments }) => {
           <textarea
             name="commentText"
             id="comment"
-            cols="30"
             rows="5"
             className="rounded border border-gray-200 p-3"
             required
