@@ -4,8 +4,8 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router-dom";
+import { getCommentInfo } from "../api/getCommentInfo";
 import { updateComment } from "../api/updateComment";
-import { hostname } from "../globals/hostname";
 
 export const action = async ({ params, request }) => {
   const { id, commentId } = params;
@@ -20,28 +20,7 @@ export const loader = async ({ params }) => {
   const { id, commentId } = params;
   const token = localStorage.getItem("jwt-token");
 
-  try {
-    const res = await fetch(
-      `${hostname}/api/v1/posts/${id}/comments/${commentId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
-
-    if (res.ok) {
-      return await res.json();
-    }
-    return { ok: false };
-  } catch (err) {
-    throw new Response("", {
-      status: 500,
-      statusText: "Fetch comment info failed",
-    });
-  }
+  return await getCommentInfo(id, commentId, token);
 };
 
 const UpdateComment = () => {
