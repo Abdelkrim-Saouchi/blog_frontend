@@ -93,7 +93,7 @@ const Header = ({ token }) => {
               </>
             )}
             {token && (
-              <li onClick={toggleMenu} className="p-2 hover:bg-slate-200">
+              <li className="p-2 hover:bg-slate-200">
                 <fetcher.Form method="post" action="/">
                   <button className="flex items-center gap-1 hover:opacity-70">
                     Logout
