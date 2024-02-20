@@ -2,7 +2,7 @@ import { hostname } from "../globals/hostname";
 
 export const getArticles = async () => {
   try {
-    const res = await fetch(`${hostname}/api/v1/posts`);
+    const res = await fetch(`${hostname}/api/v1/posts/public`);
     if (res.ok) {
       const data = await res.json();
       return data;
