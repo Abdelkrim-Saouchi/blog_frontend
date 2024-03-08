@@ -34,7 +34,7 @@ const Comment = ({ comment }) => {
   return (
     <div className="rounded border border-gray-200 p-3">
       <div className="relative flex gap-2 text-lg">
-        <div className="font-bold">{comment.author.username}</div>
+        <div className="font-bold">{comment.author?.username || comment.author.firstName + " " + comment.author.lastName}</div>
         <div className="text-gray-500">{comment.creationDate}</div>
         {comment.author._id === userId && (
           <div className="ml-auto">
