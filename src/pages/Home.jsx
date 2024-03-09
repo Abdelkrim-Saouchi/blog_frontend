@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { getArticles } from "../api/getArticles";
 import ArticleCard from "../components/ArticleCard";
+import useAutoLogout from "../hooks/useAutoLogout";
 
 export const loader = async () => {
   return await getArticles();
@@ -8,6 +9,9 @@ export const loader = async () => {
 
 const Home = () => {
   const articles = useLoaderData();
+
+  // logout automatically if user token expired
+  useAutoLogout();
 
   return (
     <main className="px-4 py-2 pt-4 md:px-40">

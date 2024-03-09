@@ -6,6 +6,7 @@ import { getLikeStatus } from "../api/getLikeStatus";
 import { removeLike } from "../api/removeLike";
 import CommentsSection from "../components/CommentsSection";
 import LikesCommentsBar from "../components/LikesCommentsBar";
+import useAutoLogout from "../hooks/useAutoLogout";
 
 export const loader = async ({ params }) => {
   const article = await getArticle(params.id);
@@ -43,6 +44,9 @@ export const action = async ({ request, params }) => {
 
 const ArticlePage = () => {
   const { article } = useLoaderData();
+
+  // logout automatically if user token expired
+  useAutoLogout();
 
   return (
     <main className="relative flex flex-col items-center px-4 py-2 pt-4 text-xl">

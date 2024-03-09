@@ -5,6 +5,7 @@ import {
   useNavigation,
 } from "react-router-dom";
 import Header from "./Header";
+import { useEffect, useState } from "react";
 
 export const loader = () => {
   const token = localStorage.getItem("jwt-token");
@@ -13,13 +14,19 @@ export const loader = () => {
 
 export const action = async () => {
   localStorage.removeItem("jwt-token");
+  localStorage.removeItem("user-expiresIn");
   localStorage.removeItem("userId");
   return redirect("/");
 };
 
 const Root = () => {
-  const token = useLoaderData();
+  const jwtToken = useLoaderData();
+  const [token, setToken] = useState(null);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    setToken(jwtToken);
+  }, [jwtToken]);
 
   return (
     <>
@@ -32,7 +39,7 @@ const Root = () => {
             : ""
         }
       >
-        <Outlet context={token} />
+        <Outlet context={{ token, setToken }} />
       </div>
     </>
   );

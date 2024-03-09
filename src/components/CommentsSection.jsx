@@ -9,7 +9,7 @@ import Comment from "./Comment";
 
 const CommentsSection = ({ comments }) => {
   const { id } = useParams();
-  const token = useOutletContext();
+  const { token } = useOutletContext();
   const fetcher = useFetcher();
   const busy = fetcher.state === "submitting";
   const isOk = fetcher.data ? fetcher.data.ok : true;
