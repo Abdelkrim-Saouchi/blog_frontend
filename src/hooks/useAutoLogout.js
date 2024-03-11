@@ -15,7 +15,6 @@ const useAutoLogout = () => {
         localStorage.removeItem("jwt-token");
         localStorage.removeItem("user-expiresIn");
         setToken(null);
-        navigate("/login");
       }
     }
   }, [setToken, navigate]);
