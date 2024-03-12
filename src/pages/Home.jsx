@@ -2,14 +2,18 @@ import { useLoaderData } from "react-router-dom";
 import { getArticles } from "../api/getArticles";
 import ArticleCard from "../components/ArticleCard";
 import useAutoLogout from "../hooks/useAutoLogout";
+import PaginationBar from "../components/PaginationBar";
 
-export const loader = async () => {
-  return await getArticles();
+export const loader = async ({ request }) => {
+  const url = new URL(request.url);
+  // if there no search param set page number to 1
+  const p = url.searchParams.get("p") || 1;
+  const data = await getArticles(p);
+  return { ...data, currentPage: p };
 };
 
 const Home = () => {
-  const articles = useLoaderData();
-
+  const { articles, totalPages, currentPage } = useLoaderData();
   // logout automatically if user token expired
   useAutoLogout();
 
@@ -25,6 +29,10 @@ const Home = () => {
           <ArticleCard key={article._id} post={article} />
         ))}
       </div>
+      <PaginationBar
+        totalPages={Number(totalPages)}
+        currentPage={Number(currentPage)}
+      />
     </main>
   );
 };
