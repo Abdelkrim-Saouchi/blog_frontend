@@ -7,6 +7,7 @@ import { removeLike } from "../api/removeLike";
 import CommentsSection from "../components/CommentsSection";
 import LikesCommentsBar from "../components/LikesCommentsBar";
 import useAutoLogout from "../hooks/useAutoLogout";
+import PseudoImage from "../components/PseudoImage";
 
 export const loader = async ({ params }) => {
   const article = await getArticle(params.id);
@@ -50,12 +51,17 @@ const ArticlePage = () => {
 
   return (
     <main className="relative flex flex-col items-center px-4 py-2 pt-4 text-xl">
-      <div className="md:w-2/4">
+      <div className="md:w-3/5">
         <h2 className="my-6 text-6xl font-bold">{article.title}</h2>
         <div>
-          <p className="font-bold">
-            {article.author.firstName} {article.author.lastName}
-          </p>
+          <div className="mb-2 flex items-center gap-2">
+            <PseudoImage
+              firstLetter={article.author.firstName[0].toUpperCase()}
+            />
+            <p className="font-bold">
+              {article.author.firstName} {article.author.lastName}
+            </p>
+          </div>
           <div className="gap-2 text-gray-500">
             <span>{article.readTime} min read</span> .{" "}
             <span>{article.creationDate}</span>
@@ -67,7 +73,7 @@ const ArticlePage = () => {
         />
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
-          className="prose w-full leading-relaxed"
+          className="prose max-w-full leading-relaxed"
         ></div>
         <div className="my-8">
           {article.topics.map((topic) => (
