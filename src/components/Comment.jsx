@@ -38,8 +38,9 @@ const Comment = ({ comment }) => {
         <div className="flex items-center gap-2 font-bold">
           <PseudoImage
             firstLetter={
-              comment.author?.username[0].toUpperCase() ||
-              comment.author.firstName[0].toUpperCase()
+              comment.author?.username
+                ? comment.author.username[0].toUpperCase()
+                : comment.author.firstName[0].toUpperCase()
             }
           />
           {comment.author?.username ||
