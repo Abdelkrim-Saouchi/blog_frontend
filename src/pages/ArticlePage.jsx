@@ -65,9 +65,10 @@ const ArticlePage = () => {
           likesNumber={article.likes.length}
           commentsNumber={article.comments.length}
         />
-        <div className="leading-relaxed">
-          <p>{article.content}</p>
-        </div>
+        <div
+          dangerouslySetInnerHTML={{ __html: article.content }}
+          className="prose w-full leading-relaxed"
+        ></div>
         <div className="my-8">
           {article.topics.map((topic) => (
             <span key={topic._id} className="rounded-lg bg-gray-100 p-2">
