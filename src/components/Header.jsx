@@ -34,14 +34,13 @@ const Header = ({ token }) => {
       <Link to="/">
         <span className="icon-[game-icons--bookmarklet] text-3xl"></span>
       </Link>
-      <div className="flex w-2/3 items-center rounded-lg border border-gray-100 bg-gray-100 p-2 md:w-auto">
+      <Link
+        to="/search"
+        className="flex text-gray-600 w-2/3 items-center rounded-lg border border-gray-100 bg-gray-100 p-2 md:w-1/3"
+      >
         <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
-        <input
-          type="search"
-          placeholder="Search"
-          className="w-full bg-gray-100 pl-3 outline-none focus:outline-none"
-        />
-      </div>
+        <div className="w-full bg-gray-100 pl-3">Search</div>
+      </Link>
       <nav className="hidden md:block">
         <ul className="flex gap-6 font-semibold">
           {!token && (

@@ -18,6 +18,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Home, { loader as homeLoader } from "./pages/Home";
 import Login, { action as loginAction } from "./pages/Login";
 import SingUp, { action as signUpAction } from "./pages/SingUp";
+import SearchPage from "./pages/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
             action: delCommentAction,
           },
         ],
+      },
+      {
+        path: "search",
+        element: <SearchPage />,
       },
     ],
   },
