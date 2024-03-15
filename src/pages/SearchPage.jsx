@@ -17,7 +17,6 @@ export const loader = async ({ request }) => {
 
 const SearchPage = () => {
   const { search, articles } = useLoaderData();
-  console.log("articles", articles);
   const submit = useSubmit();
   const navigation = useNavigation();
   const searching =
@@ -34,7 +33,7 @@ const SearchPage = () => {
         <label className="text-2xl font-semibold">
           Search articles by title:
         </label>
-        <div className="flex w-2/3 items-center rounded-lg border border-gray-100 bg-gray-100 p-2 text-gray-600 focus-within:ring md:w-1/3">
+        <div className="flex  items-center rounded-lg border border-gray-100 bg-gray-100 p-2 text-gray-600 focus-within:ring md:w-1/3">
           {!searching ? (
             <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
           ) : (
