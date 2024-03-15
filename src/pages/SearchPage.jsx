@@ -6,6 +6,7 @@ import {
   useSubmit,
 } from "react-router-dom";
 import { searchArticles } from "../api/searchArticles";
+import ArticleCard from "../components/ArticleCard";
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
@@ -19,7 +20,9 @@ const SearchPage = () => {
   console.log("articles", articles);
   const submit = useSubmit();
   const navigation = useNavigation();
-  const searching = navigation.state === "loading";
+  const searching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has("search");
 
   useEffect(() => {
     document.getElementById("search").value = search;
@@ -51,6 +54,11 @@ const SearchPage = () => {
           />
         </div>
       </Form>
+      <div className="pt-8">
+        {articles.map((article) => (
+          <ArticleCard key={article._id} post={article} />
+        ))}
+      </div>
     </main>
   );
 };
