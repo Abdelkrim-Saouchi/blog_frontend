@@ -18,7 +18,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Home, { loader as homeLoader } from "./pages/Home";
 import Login, { action as loginAction } from "./pages/Login";
 import SingUp, { action as signUpAction } from "./pages/SingUp";
-import SearchPage from "./pages/SearchPage";
+import SearchPage, { loader as searchLoader } from "./pages/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +67,7 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <SearchPage />,
+        loader: searchLoader,
       },
     ],
   },
