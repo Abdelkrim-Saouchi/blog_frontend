@@ -54,6 +54,7 @@ const SearchPage = () => {
           />
         </div>
       </Form>
+      <p className="mt-2 font-semibold">Results: {articles.length}</p>
       <div className="pt-8">
         {articles.map((article) => (
           <ArticleCard key={article._id} post={article} />
