@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
-import { Link, useFetcher } from "react-router-dom";
+import { Link, useFetcher, useLocation } from "react-router-dom";
 
 const Header = ({ token }) => {
   const menuRef = useRef(null);
   const fetcher = useFetcher();
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     // menuRef.current.classList.toggle("hidden");
@@ -34,13 +35,15 @@ const Header = ({ token }) => {
       <Link to="/">
         <span className="icon-[game-icons--bookmarklet] text-3xl"></span>
       </Link>
-      <Link
-        to="/search"
-        className="flex text-gray-600 w-2/3 items-center rounded-lg border border-gray-100 bg-gray-100 p-2 md:w-1/3"
-      >
-        <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
-        <div className="w-full bg-gray-100 pl-3">Search</div>
-      </Link>
+      {location.pathname !== "/search" && (
+        <Link
+          to="/search"
+          className="flex w-2/3 items-center rounded-lg border border-gray-100 bg-gray-100 p-2 text-gray-600 md:w-1/3"
+        >
+          <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
+          <div className="w-full bg-gray-100 pl-3">Search</div>
+        </Link>
+      )}
       <nav className="hidden md:block">
         <ul className="flex gap-6 font-semibold">
           {!token && (
