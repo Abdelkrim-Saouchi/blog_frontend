@@ -19,6 +19,7 @@ import Home, { loader as homeLoader } from "./pages/Home";
 import Login, { action as loginAction } from "./pages/Login";
 import SingUp, { action as signUpAction } from "./pages/SingUp";
 import SearchPage, { loader as searchLoader } from "./pages/SearchPage";
+import FilterPage, { loader as fitlerLoader } from "./pages/FilterPage";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
         path: "search",
         element: <SearchPage />,
         loader: searchLoader,
+      },
+      {
+        path: "filter",
+        element: <FilterPage />,
+        loader: fitlerLoader,
       },
     ],
   },
