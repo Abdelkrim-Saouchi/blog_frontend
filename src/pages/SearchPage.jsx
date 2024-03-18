@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { searchArticles } from "../api/searchArticles";
 import ArticleCard from "../components/ArticleCard";
+import useAutoLogout from "../hooks/useAutoLogout";
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
@@ -22,6 +23,9 @@ const SearchPage = () => {
   const searching =
     navigation.location &&
     new URLSearchParams(navigation.location.search).has("search");
+
+  // logout automatically if user token expired
+  useAutoLogout();
 
   useEffect(() => {
     document.getElementById("search").value = search;
