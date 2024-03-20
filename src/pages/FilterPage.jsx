@@ -1,24 +1,34 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useNavigation } from "react-router-dom";
 import { getTopics } from "../api/getTopics";
 import { useEffect, useState } from "react";
 import { filterArticles } from "../api/filterArticles";
 import ArticleCard from "../components/ArticleCard";
+import PaginationBar from "../components/PaginationBar";
 
 export const loader = async ({ request }) => {
   const topicsData = await getTopics();
   const url = new URL(request.url);
-  let search = url.searchParams.get("search");
-  if (search === "") {
-    search = null;
-  }
-  const articles = await filterArticles(search);
-  console.log("search:", search);
-  return { topicsData, search, articles: articles.articles };
+  let topic =
+    url.searchParams.get("topic") === "" ? null : url.searchParams.get("topic");
+  const p = url.searchParams.get("p") || 1;
+  const articles = await filterArticles(topic, p);
+  return {
+    topicsData,
+    topic,
+    currentPage: p,
+    totalPages: articles.totalPages,
+    articles: articles.articles,
+  };
 };
 
 const FilterPage = () => {
-  let { topicsData, search, articles } = useLoaderData();
-  const [topics, setTopics] = useState(search?.split(";") || []);
+  const { topicsData, topic, currentPage, articles, totalPages } =
+    useLoaderData();
+  const [topics, setTopics] = useState(topic?.split(";") || []);
+  const navigation = useNavigation();
+  const searching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has("topic");
 
   const handleChange = (e) => {
     if (topics.includes(e.target.value)) {
@@ -31,8 +41,8 @@ const FilterPage = () => {
   };
 
   useEffect(() => {
-    setTopics(search?.split(";") || []);
-  }, [search]);
+    setTopics(topic?.split(";") || []);
+  }, [topic]);
 
   return (
     <main className="px-4 py-2 pt-4 md:px-40">
@@ -44,7 +54,11 @@ const FilterPage = () => {
               key={topic._id}
               onClick={handleChange}
               value={topic._id}
-              className=" rounded-xl border p-2 shadow "
+              className={
+                topics.includes(topic._id)
+                  ? " rounded-xl border bg-slate-200 p-2 shadow"
+                  : " rounded-xl border p-2 shadow "
+              }
             >
               {topic.name}
             </button>
@@ -53,16 +67,27 @@ const FilterPage = () => {
         <input
           hidden
           type="search"
-          name="search"
-          id="search"
+          name="topic"
+          id="topic"
           defaultValue={topics.join(";")}
         />
       </Form>
+      {searching && (
+        <span className="icon-[ph--spinner-gap-light] animate-spin text-4xl text-gray-600"></span>
+      )}
       <div>
-        {articles.map((article) => (
-          <ArticleCard key={article._id} post={article} />
-        ))}
+        {!searching &&
+          articles.map((article) => (
+            <ArticleCard key={article._id} post={article} />
+          ))}
       </div>
+
+      {!searching && articles.length > 0 && (
+        <PaginationBar
+          totalPages={Number(totalPages)}
+          currentPage={Number(currentPage)}
+        />
+      )}
     </main>
   );
 };
