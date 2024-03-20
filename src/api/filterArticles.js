@@ -1,11 +1,16 @@
 import { hostname } from "../globals/hostname";
 
-export const filterArticles = async (search) => {
-  if (search == null) {
-    return { articles: [] };
+export const filterArticles = async (topic, page) => {
+  let topicString;
+  if (topic == null) {
+    topicString = "";
+  } else {
+    topicString = `q=${topic}&`;
   }
   try {
-    const res = await fetch(`${hostname}/api/v1/posts/filter/post?q=${search}`);
+    const res = await fetch(
+      `${hostname}/api/v1/posts/filter/post?${topicString}p=${page}`,
+    );
     if (res.ok) {
       const data = await res.json();
       return data;

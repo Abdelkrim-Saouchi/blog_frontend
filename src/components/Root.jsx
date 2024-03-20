@@ -35,7 +35,8 @@ const Root = () => {
       <div
         className={
           navigation.state === "loading" &&
-          navigation.location.pathname !== "/search" // prevent fading effect on search page
+          navigation.location.pathname !== "/search" && // prevent fading effect on search page
+          navigation.location.pathname !== "/filter" // prevent fading effect on filter page
             ? "opacity-25 transition-opacity delay-200 duration-200"
             : ""
         }

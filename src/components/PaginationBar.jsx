@@ -1,21 +1,28 @@
-import { Form, useNavigation, useSubmit } from "react-router-dom";
+import { useNavigation, useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 const PaginationBar = ({ totalPages, currentPage }) => {
-  const [query, setQuery] = useState(currentPage);
-  const submit = useSubmit();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigation = useNavigation();
   const busy = navigation.state === "loading";
+
+  const handleChangePage = (key, value) => {
+    setSearchParams((prevParams) => {
+      if (value == null) {
+        prevParams.delete(key);
+      } else {
+        prevParams.set(key, value);
+      }
+      return prevParams;
+    });
+  };
 
   const buttons = [];
   for (let i = 1; i <= totalPages; i++) {
     buttons.push(
       <button
         key={i}
-        onClick={(e) => {
-          setQuery(e.target.textContent);
-        }}
+        onClick={() => handleChangePage("p", i)}
         disabled={i === currentPage || busy}
         className={
           i === currentPage
@@ -29,16 +36,7 @@ const PaginationBar = ({ totalPages, currentPage }) => {
   }
   return (
     <div className="mt-4">
-      <Form>
-        <input
-          hidden
-          type="search"
-          name="p"
-          value={query}
-          onChange={(e) => submit(e.currentTarget.form)}
-        />
-        {buttons}
-      </Form>
+      <div>{buttons}</div>
     </div>
   );
 };
