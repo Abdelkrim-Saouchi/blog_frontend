@@ -1,4 +1,4 @@
-import { Form, useLoaderData, useNavigation } from "react-router-dom";
+import { Form, Link, useLoaderData, useNavigation } from "react-router-dom";
 import { getTopics } from "../api/getTopics";
 import { useEffect, useState } from "react";
 import { filterArticles } from "../api/filterArticles";
@@ -45,7 +45,14 @@ const FilterPage = () => {
   }, [topic]);
 
   return (
-    <main className="px-4 py-2 pt-4 md:px-40">
+    <main className="space-y-4 px-4 py-2 pt-4 md:px-40">
+      <div className="flex items-center gap-6 border-b border-gray-200 pb-4 opacity-70">
+        <span className="icon-[ph--plus-thin]"></span>
+        <Link to="/">For you</Link>
+        <Link to="/filter" className="font-bold">
+          Topics
+        </Link>
+      </div>
       <h2 className="text-2xl font-semibold">Filter articles by topics:</h2>
       <Form>
         <div className="my-4 flex gap-4 rounded border-2 border-slate-400 p-4 ">
