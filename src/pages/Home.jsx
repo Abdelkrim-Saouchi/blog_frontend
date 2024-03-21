@@ -26,7 +26,7 @@ const Home = () => {
         </Link>
         <Link to="/filter">Topics</Link>
       </div>
-      <div className="pt-8">
+      <div className=" pt-8">
         {articles.map((article) => (
           <ArticleCard key={article._id} post={article} />
         ))}
