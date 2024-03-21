@@ -8,16 +8,26 @@ import {
 import { searchArticles } from "../api/searchArticles";
 import ArticleCard from "../components/ArticleCard";
 import useAutoLogout from "../hooks/useAutoLogout";
+import PaginationBar from "../components/PaginationBar";
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
-  const search = url.searchParams.get("search");
-  const data = await searchArticles(search);
-  return { search, articles: data.articles };
+  const search =
+    url.searchParams.get("search") === ""
+      ? null
+      : url.searchParams.get("search");
+  const p = url.searchParams.get("p") || 1;
+  const data = await searchArticles(search, p);
+  return {
+    search,
+    articles: data.articles,
+    currentPage: p,
+    totalPages: data.totalPages,
+  };
 };
 
 const SearchPage = () => {
-  const { search, articles } = useLoaderData();
+  const { search, articles, currentPage, totalPages } = useLoaderData();
   const submit = useSubmit();
   const navigation = useNavigation();
   const searching =
@@ -59,11 +69,21 @@ const SearchPage = () => {
       </Form>
       <p className="mt-2 font-semibold">Results: {articles.length}</p>
       <hr />
+      {searching && (
+        <span className="icon-[ph--spinner-gap-light] animate-spin text-5xl text-gray-600"></span>
+      )}
       <div className="pt-4">
-        {articles.map((article) => (
-          <ArticleCard key={article._id} post={article} />
-        ))}
+        {!searching &&
+          articles.map((article) => (
+            <ArticleCard key={article._id} post={article} />
+          ))}
       </div>
+      {!searching && articles.length > 0 && (
+        <PaginationBar
+          currentPage={Number(currentPage)}
+          totalPages={Number(totalPages)}
+        />
+      )}
     </main>
   );
 };
