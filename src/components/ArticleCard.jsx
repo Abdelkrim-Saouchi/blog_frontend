@@ -13,10 +13,19 @@ const ArticleCard = ({ post }) => {
           </span>
           <span className="text-gray-500">{post.creationDate}</span>
         </div>
-        <div className="pb-8 pt-2">
+        <div className="py-2">
           <h2 className="text-2xl font-bold ">
             <Link to={`/articles/${post._id}`}>{post.title}</Link>
           </h2>
+        </div>
+        <div className="my-2 mb-4 flex items-center gap-3">
+          <span className="flex items-center gap-2 ">
+            <span className="icon-[mdi--like]"></span> {post.likes.length}
+          </span>
+          <span className="flex items-center gap-2 ">
+            <span className="icon-[mdi--comment-outline]"></span>{" "}
+            {post.comments.length}
+          </span>
         </div>
         <div className="hidden md:block">
           {post.topics.map((topic) => (
