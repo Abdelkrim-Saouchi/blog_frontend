@@ -3,12 +3,14 @@ import { getArticles } from "../api/getArticles";
 import ArticleCard from "../components/ArticleCard";
 import useAutoLogout from "../hooks/useAutoLogout";
 import PaginationBar from "../components/PaginationBar";
+import SortBy from "../components/SortBy";
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
   // if there no search param set page number to 1
   const p = url.searchParams.get("p") || 1;
-  const data = await getArticles(p);
+  const sortBy = url.searchParams.get("sortBy");
+  const data = await getArticles(p, sortBy);
   return { ...data, currentPage: p };
 };
 
@@ -26,6 +28,7 @@ const Home = () => {
         </Link>
         <Link to="/filter">Topics</Link>
       </div>
+      <SortBy />
       <div className=" pt-8">
         {articles.map((article) => (
           <ArticleCard key={article._id} post={article} />
