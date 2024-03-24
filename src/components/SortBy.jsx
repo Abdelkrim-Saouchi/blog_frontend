@@ -36,12 +36,16 @@ const SortBy = () => {
     <div className="relative mt-4 flex gap-4">
       <div className="font-semibold">Sort by:</div>
       <div>
-        <button onClick={toggleSortList} className="border px-2">
+        <button
+          onClick={toggleSortList}
+          className="flex items-center border px-2"
+        >
           {searchParams.get("sortBy")
             ? searchParams.get("sortBy") === "likes"
               ? "most likes"
               : "most comments"
             : "none"}
+          <span className="icon-[ic--outline-keyboard-arrow-down]"></span>
         </button>
         <div
           ref={sortList}
