@@ -11,7 +11,7 @@ export const updateComment = async (id, commentId, token, content) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ content: content }),
+        body: JSON.stringify({ commentText: content }),
       },
     );
 
