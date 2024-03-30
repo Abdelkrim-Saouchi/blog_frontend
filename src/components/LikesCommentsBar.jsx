@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { useFetcher, useParams } from "react-router-dom";
+import { Link, useFetcher, useParams } from "react-router-dom";
 
 const LikesCommentsBar = ({ likesNumber, commentsNumber }) => {
   const { id } = useParams();
@@ -57,9 +57,9 @@ const LikesCommentsBar = ({ likesNumber, commentsNumber }) => {
         {likesNumber}
       </div>
       <div className="flex items-center gap-2 text-xl text-gray-500">
-        <button className="flex items-center">
+        <a href="#comments" className="flex items-center">
           <span className="icon-[mdi--comment-outline]"></span>
-        </button>
+        </a>
         {commentsNumber}
       </div>
       {error && (

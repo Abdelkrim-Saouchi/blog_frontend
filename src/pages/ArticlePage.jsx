@@ -50,9 +50,9 @@ const ArticlePage = () => {
   useAutoLogout();
 
   return (
-    <main className="relative flex flex-col items-center px-4 py-2 pt-4 text-xl">
+    <main className="relative flex flex-col items-center bg-custom-bg px-4 py-2 pt-4 text-xl text-custom-text">
       <div className="md:w-3/5">
-        <h2 className="my-6 text-6xl font-bold">{article.title}</h2>
+        <h2 className="my-6 text-3xl font-bold md:text-6xl">{article.title}</h2>
         <div>
           <div className="mb-2 flex items-center gap-2">
             <PseudoImage
@@ -76,11 +76,14 @@ const ArticlePage = () => {
         )}
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
-          className="prose max-w-full leading-relaxed"
+          className="prose prose-sm max-w-full leading-relaxed md:prose-base"
         ></div>
         <div className="my-8">
           {article.topics.map((topic) => (
-            <span key={topic._id} className="rounded-lg bg-gray-100 p-2">
+            <span
+              key={topic._id}
+              className="rounded-lg bg-custom-primary p-2 text-lg "
+            >
               {topic.name}
             </span>
           ))}

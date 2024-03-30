@@ -15,18 +15,21 @@ const CommentsSection = ({ comments }) => {
   const isOk = fetcher.data ? fetcher.data.ok : true;
 
   return (
-    <div>
+    <section className="pb-9" id="comments">
       {token && (
         <fetcher.Form
           method="post"
           action={`/articles/${id}`}
           className="mb-6 flex resize-y flex-col gap-2"
         >
+          <h3 className="mb-4 text-xl font-bold md:text-2xl">
+            Leave a comment:
+          </h3>
           <textarea
             name="commentText"
             id="comment"
             rows="5"
-            className="rounded border border-gray-200 p-3"
+            className="mb-4 rounded border border-gray-200 p-3 shadow-lg"
             required
             disabled={busy}
           ></textarea>
@@ -35,7 +38,7 @@ const CommentsSection = ({ comments }) => {
             name="commentBtn"
             value="create"
             disabled={busy}
-            className="flex items-center gap-2 self-start rounded bg-black p-3 text-white"
+            className="flex items-center gap-2 self-start rounded bg-custom-accent p-3 "
           >
             {busy ? (
               <>
@@ -50,11 +53,14 @@ const CommentsSection = ({ comments }) => {
       )}
 
       {!token && (
-        <div className="mb-4 rounded border border-red-200 p-3 text-center text-red-600">
+        <div className="mb-4 flex flex-col rounded border border-red-200 p-3 text-center text-red-600">
           <p className="mb-4">
             You are not log in. You must log in to comment this article
           </p>
-          <Link to="/login" className="rounded bg-black p-2 text-white">
+          <Link
+            to="/login"
+            className="block w-fit self-center rounded-lg bg-custom-accent p-2 px-8 text-custom-text"
+          >
             Log in
           </Link>
         </div>
@@ -66,12 +72,14 @@ const CommentsSection = ({ comments }) => {
         </p>
       )}
 
-      <div className="mb-6 flex flex-col gap-4">
+      <h3 className="mt-4 text-xl font-bold md:text-2xl">Comments:</h3>
+      <hr className="mb-8 border" />
+      <div className="mb-6 flex flex-col gap-4 rounded-lg bg-custom-secondary-light shadow-lg">
         {comments.map((comment) => (
           <Comment key={comment._id} comment={comment} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

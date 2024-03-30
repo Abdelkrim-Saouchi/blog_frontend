@@ -33,7 +33,7 @@ const Comment = ({ comment }) => {
   }, []);
 
   return (
-    <div className="space-y-2 rounded border border-gray-200 p-3">
+    <div className="space-y-2 rounded border border-gray-200 bg-white p-3">
       <div className="relative flex gap-2 text-lg">
         <div className="flex items-center gap-2 font-bold">
           <PseudoImage
