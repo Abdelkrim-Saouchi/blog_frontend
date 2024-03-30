@@ -31,17 +31,18 @@ const Header = ({ token }) => {
   }, []);
 
   return (
-    <header className="flex flex-row items-center justify-between gap-4 border-b border-gray-200 px-2 py-2 md:px-4">
-      <Link to="/">
-        <span className="icon-[game-icons--bookmarklet] text-3xl"></span>
+    <header className="flex flex-row items-center justify-between gap-4 border-b border-gray-200 bg-custom-bg px-2 py-4 text-custom-text md:px-8">
+      <Link to="/" className="flex items-center gap-2">
+        <span className="icon-[game-icons--bookmarklet] text-2xl md:text-3xl"></span>
+        <h1 className="text-lg font-bold md:text-2xl">Myblog</h1>
       </Link>
       {location.pathname !== "/search" && (
         <Link
           to="/search"
-          className="flex w-2/3 items-center rounded-lg border border-gray-100 bg-gray-100 p-2 text-gray-600 md:w-1/3"
+          className="flex w-2/3 items-center rounded-lg border border-gray-100 bg-custom-secondary-light bg-gray-100 p-1 text-custom-text text-gray-600 md:w-1/3 md:p-2"
         >
           <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
-          <div className="w-full bg-gray-100 pl-3">Search</div>
+          <div className="w-full bg-gray-100 bg-inherit pl-3">Search</div>
         </Link>
       )}
       <nav className="hidden md:block">
@@ -75,7 +76,7 @@ const Header = ({ token }) => {
       <div className="md:hidden">
         <span
           onClick={toggleMenu}
-          className="icon-[mdi--hamburger-menu] text-3xl"
+          className="icon-[mdi--hamburger-menu] text-2xl md:text-3xl"
         ></span>
       </div>
       {open && (
@@ -99,7 +100,7 @@ const Header = ({ token }) => {
                 <fetcher.Form method="post" action="/">
                   <button className="flex items-center gap-1 hover:opacity-70">
                     Logout
-                    <span className="icon-[mdi--exit-run] text-xl"></span>
+                    <span className="icon-[mdi--exit-run] text-lg"></span>
                   </button>
                 </fetcher.Form>
               </li>
