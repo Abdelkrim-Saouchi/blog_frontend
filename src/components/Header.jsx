@@ -46,7 +46,7 @@ const Header = ({ token }) => {
         </Link>
       )}
       <nav className="hidden md:block">
-        <ul className="flex gap-6 font-semibold">
+        <ul className="flex gap-9 font-semibold">
           {!token && (
             <>
               <li>
