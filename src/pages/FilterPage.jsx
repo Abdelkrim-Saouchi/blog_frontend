@@ -45,11 +45,13 @@ const FilterPage = () => {
   }, [topic]);
 
   return (
-    <main className="space-y-4 px-4 py-2 pt-4 md:px-40">
+    <main className="min-h-dvh space-y-4 bg-custom-bg px-4 py-2 pt-4 md:px-40">
       <div className="flex items-center gap-6 border-b border-gray-200 pb-4 opacity-70">
-        <span className="icon-[ph--plus-thin]"></span>
-        <Link to="/">For you</Link>
-        <Link to="/filter" className="font-bold">
+        <span className="icon-[ph--plus-thin] text-lg text-custom-accent"></span>
+        <Link to="/" className="text-lg">
+          For you
+        </Link>
+        <Link to="/filter" className="text-lg font-bold">
           Topics
         </Link>
       </div>
@@ -63,7 +65,7 @@ const FilterPage = () => {
               value={topic._id}
               className={
                 topics.includes(topic._id)
-                  ? " rounded-xl border bg-slate-200 p-2 shadow"
+                  ? " rounded-xl border bg-custom-primary p-2 shadow"
                   : " rounded-xl border p-2 shadow "
               }
             >
