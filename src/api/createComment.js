@@ -10,7 +10,7 @@ export const createComment = async (postId, token, content) => {
       },
       body: JSON.stringify({
         post: postId,
-        content: content,
+        commentText: content,
       }),
     });
     if (res.ok) {
