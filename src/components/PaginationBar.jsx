@@ -26,7 +26,7 @@ const PaginationBar = ({ totalPages, currentPage }) => {
         disabled={i === currentPage || busy}
         className={
           i === currentPage
-            ? "border bg-slate-400 px-4 py-1"
+            ? "border bg-custom-accent px-4 py-1"
             : "border px-4 py-1 "
         }
       >
@@ -35,7 +35,7 @@ const PaginationBar = ({ totalPages, currentPage }) => {
     );
   }
   return (
-    <div className="mt-4">
+    <div className="mt-auto">
       <div>{buttons}</div>
     </div>
   );

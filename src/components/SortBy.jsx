@@ -38,13 +38,13 @@ const SortBy = () => {
       <div>
         <button
           onClick={toggleSortList}
-          className="flex items-center border px-2"
+          className=" flex items-center rounded-lg bg-custom-accent px-4 py-1"
         >
           {searchParams.get("sortBy")
             ? searchParams.get("sortBy") === "likes"
-              ? "most likes"
-              : "most comments"
-            : "none"}
+              ? "Most likes"
+              : "Most comments"
+            : "None"}
           <span className="icon-[ic--outline-keyboard-arrow-down]"></span>
         </button>
         <div
@@ -53,15 +53,15 @@ const SortBy = () => {
         >
           <button
             onClick={() => handleOnOptionClick("sortBy", "likes")}
-            className="px-1 text-start hover:bg-slate-200"
+            className="px-1 text-start hover:bg-custom-secondary-light"
           >
-            most likes
+            Most likes
           </button>
           <button
             onClick={() => handleOnOptionClick("sortBy", "comments")}
-            className="px-1 text-start hover:bg-slate-200 "
+            className="px-1 text-start hover:bg-custom-secondary-light "
           >
-            most comments
+            Most comments
           </button>
         </div>
       </div>

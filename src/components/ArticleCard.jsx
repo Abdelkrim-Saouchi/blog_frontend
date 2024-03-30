@@ -4,7 +4,7 @@ import PseudoImage from "./PseudoImage";
 
 const ArticleCard = ({ post }) => {
   return (
-    <div className="flex flex-col border-b border-gray-200 py-6 md:flex-row">
+    <div className="mb-4 flex flex-col rounded-lg border-b border-gray-200 bg-custom-secondary-light px-4 py-6 text-custom-text md:flex-row">
       <div className="gap-3">
         <div className="flex items-center gap-2">
           <PseudoImage firstLetter={post.author.firstName[0].toUpperCase()} />
@@ -14,7 +14,7 @@ const ArticleCard = ({ post }) => {
           <span className="text-gray-500">{post.creationDate}</span>
         </div>
         <div className="py-2">
-          <h2 className="text-2xl font-bold ">
+          <h2 className="text-2xl font-bold hover:text-custom-accent">
             <Link to={`/articles/${post._id}`}>{post.title}</Link>
           </h2>
         </div>
@@ -29,7 +29,7 @@ const ArticleCard = ({ post }) => {
         </div>
         <div className="hidden md:block">
           {post.topics.map((topic) => (
-            <span key={topic.name} className="rounded-lg bg-gray-100 p-2">
+            <span key={topic.name} className="rounded-lg bg-custom-primary p-2">
               {topic.name}
             </span>
           ))}
@@ -40,12 +40,12 @@ const ArticleCard = ({ post }) => {
         <img
           src={post.imgURL}
           alt="article"
-          className="size-40 object-contain"
+          className="mt-auto size-40 object-contain md:ml-auto"
         />
       )}
-      <div className="md:hidden ">
+      <div className="mt-auto p-4 md:hidden">
         {post.topics.map((topic) => (
-          <span key={topic.name} className="rounded-lg bg-gray-100 p-2">
+          <span key={topic.name} className="rounded-lg bg-custom-primary p-2">
             {topic.name}
           </span>
         ))}
