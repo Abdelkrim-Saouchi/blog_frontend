@@ -5,7 +5,16 @@ import typography from "@tailwindcss/typography";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "custom-text": "#05140c",
+        "custom-bg": "#effbf6",
+        "custom-primary": "#3bce7d",
+        "custom-secondary": "#b698e6",
+        "custom-secondary-light": "#eaeff2",
+        "custom-accent": "#cc5fd8",
+      },
+    },
   },
   plugins: [
     //Iconify plugin
