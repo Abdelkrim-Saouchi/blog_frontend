@@ -42,16 +42,16 @@ const SearchPage = () => {
   }, [search]);
 
   return (
-    <main className="px-4 py-2 pt-4 md:px-40">
+    <main className="min-h-dvh bg-custom-bg px-4 py-2 pt-4 text-custom-text md:px-40">
       <Form className="flex flex-col gap-2">
         <label className="text-2xl font-semibold">
           Search articles by title:
         </label>
-        <div className="flex  items-center rounded-lg border border-gray-100 bg-gray-100 p-2 text-gray-600 focus-within:ring md:w-1/3">
+        <div className="flex items-center rounded-lg border border-gray-100 bg-custom-secondary-light  p-2 text-gray-600 focus-within:ring md:w-1/3">
           {!searching ? (
             <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
           ) : (
-            <span className="icon-[ph--spinner-gap-light] animate-spin text-2xl text-gray-600"></span>
+            <span className="icon-[ph--spinner-gap-light] animate-spin text-2xl text-inherit"></span>
           )}
           <input
             type="search"
@@ -63,11 +63,13 @@ const SearchPage = () => {
               const isFirstSearch = search == null;
               submit(e.currentTarget.form, { replace: !isFirstSearch });
             }}
-            className="ml-2 w-full bg-gray-100 outline-none focus:outline-none"
+            className="ml-2 w-full bg-custom-secondary-light  outline-none focus:outline-none"
           />
         </div>
       </Form>
-      <p className="mt-2 font-semibold">Results: {articles.length}</p>
+      <p className="mt-2 font-semibold text-custom-accent">
+        Results: {articles.length}
+      </p>
       <hr />
       {searching && (
         <span className="icon-[ph--spinner-gap-light] animate-spin text-5xl text-gray-600"></span>
