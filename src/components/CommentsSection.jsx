@@ -16,15 +16,13 @@ const CommentsSection = ({ comments }) => {
 
   return (
     <section className="pb-9" id="comments">
+      <h3 className="mb-4 text-xl font-bold md:text-2xl">Leave a comment:</h3>
       {token && (
         <fetcher.Form
           method="post"
           action={`/articles/${id}`}
           className="mb-6 flex resize-y flex-col gap-2"
         >
-          <h3 className="mb-4 text-xl font-bold md:text-2xl">
-            Leave a comment:
-          </h3>
           <textarea
             name="commentText"
             id="comment"
