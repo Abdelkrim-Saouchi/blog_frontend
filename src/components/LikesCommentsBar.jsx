@@ -10,7 +10,6 @@ const LikesCommentsBar = ({ likesNumber, commentsNumber }) => {
     ? fetcher.formData.get("liked") === "no"
     : fetcher.data?.likeClicked;
 
-  console.log("liked:", liked);
   useEffect(() => {
     if (fetcher.state === "idle" && !fetcher.data) {
       fetcher.load(`/articles/${id}`);
