@@ -27,7 +27,6 @@ export const action = async ({ request, params }) => {
   // remove like on article
   if (formData.get("liked") === "yes") {
     const likeId = formData.get("likeId");
-
     return await removeLike(params.id, likeId, token);
   }
 
@@ -36,11 +35,6 @@ export const action = async ({ request, params }) => {
     const content = formData.get("commentText");
     return await createComment(params.id, token, content);
   }
-
-  // // delete comment on article
-  // if (formData.get("commentBtn") === "delete") {
-
-  // }
 };
 
 const ArticlePage = () => {
