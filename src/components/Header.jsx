@@ -34,7 +34,7 @@ const Header = ({ token }) => {
     <header className="flex flex-row items-center justify-between gap-4 border-b border-gray-200 bg-custom-bg px-2 py-4 text-custom-text md:px-8">
       <Link to="/" className="flex items-center gap-2">
         <span className="icon-[game-icons--bookmarklet] text-2xl md:text-3xl"></span>
-        <h1 className="text-lg font-bold md:text-2xl">Myblog</h1>
+        <h1 className="text-lg font-bold md:text-2xl">MyBlog</h1>
       </Link>
       {location.pathname !== "/search" && (
         <Link
