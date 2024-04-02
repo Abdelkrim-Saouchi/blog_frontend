@@ -57,7 +57,7 @@ const FilterPage = () => {
       </div>
       <h2 className="text-2xl font-semibold">Filter articles by topics:</h2>
       <Form>
-        <div className="my-4 flex gap-4 rounded border-2 border-slate-400 p-4 ">
+        <div className="my-4 flex gap-4 overflow-x-auto rounded border-2 border-slate-400 p-4">
           {topicsData.topics.map((topic) => (
             <button
               key={topic._id}
@@ -65,8 +65,8 @@ const FilterPage = () => {
               value={topic._id}
               className={
                 topics.includes(topic._id)
-                  ? " rounded-xl border bg-custom-primary p-2 shadow"
-                  : " rounded-xl border p-2 shadow "
+                  ? " min-w-max rounded-xl border bg-custom-primary p-2 shadow"
+                  : " min-w-max rounded-xl border p-2 shadow "
               }
             >
               {topic.name}
