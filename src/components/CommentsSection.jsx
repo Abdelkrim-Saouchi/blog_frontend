@@ -71,6 +71,9 @@ const CommentsSection = ({ comments }) => {
       )}
 
       <h3 className="mt-4 text-xl font-bold md:text-2xl">Comments:</h3>
+      {comments.length === 0 && (
+        <p className="my-4 italic text-gray-400">No comments</p>
+      )}
       <hr className="mb-8 border" />
       <div className="mb-6 flex flex-col gap-4 rounded-lg bg-custom-secondary-light shadow-lg">
         {comments.map((comment) => (
