@@ -39,7 +39,7 @@ const Header = ({ token }) => {
       {location.pathname !== "/search" && (
         <Link
           to="/search"
-          className="flex w-2/3 items-center rounded-lg border border-gray-100 bg-custom-secondary-light bg-gray-100 p-1 text-custom-text text-gray-600 md:w-1/3 md:p-2"
+          className="flex w-2/3 items-center rounded-lg border border-gray-100 bg-custom-secondary-light p-1 text-custom-text  md:w-1/3 md:p-2"
         >
           <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
           <div className="w-full bg-gray-100 bg-inherit pl-3">Search</div>
