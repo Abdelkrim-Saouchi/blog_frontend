@@ -34,7 +34,7 @@ const UpdateComment = () => {
   };
 
   return (
-    <div className="fixed z-10 flex flex-col items-center justify-center gap-4 rounded bg-slate-200 p-4 shadow-lg">
+    <div className="fixed z-10 flex flex-col items-center justify-center gap-4 rounded bg-slate-200 p-4 text-custom-text shadow-lg">
       <div>
         <Form method="post" className="mb-6 flex resize-y flex-col gap-2">
           <textarea
@@ -50,7 +50,7 @@ const UpdateComment = () => {
               type="submit"
               name="commentBtn"
               value="update"
-              className="flex items-center gap-2 self-start rounded bg-black p-3 text-white"
+              className="flex items-center gap-2 self-start rounded bg-custom-accent p-3"
             >
               {busy ? (
                 <>
@@ -64,7 +64,7 @@ const UpdateComment = () => {
             <button
               type="button"
               onClick={cancel}
-              className="flex items-center gap-2 self-start rounded bg-black p-3 text-white"
+              className="flex items-center gap-2 self-start rounded bg-custom-accent p-3"
             >
               Cancel
             </button>
