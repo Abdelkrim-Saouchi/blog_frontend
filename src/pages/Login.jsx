@@ -44,7 +44,7 @@ const Login = () => {
   const busy = navigation.state === "submitting";
 
   return (
-    <main className="flex flex-col items-center p-4">
+    <main className="flex min-h-dvh flex-col items-center bg-custom-bg p-4 text-custom-text">
       {location.state?._isRedirect && (
         <p className="mb-4 text-xl font-semibold text-green-600">
           Your Sign up was successful. You can login now.
@@ -73,7 +73,7 @@ const Login = () => {
 
       <Form
         method="post"
-        className="flex flex-col items-center rounded-lg border border-gray-200 p-4 md:px-8"
+        className="flex flex-col items-center rounded-lg border border-gray-200 bg-custom-primary-light  p-4 md:px-8"
       >
         <div className="mb-4 flex flex-col">
           <label htmlFor="email">Email:</label>
@@ -84,7 +84,7 @@ const Login = () => {
             placeholder="example@mail.com"
             required
             autoComplete="username"
-            className="rounded bg-gray-100 p-2"
+            className="rounded bg-custom-secondary-light p-2"
           />
         </div>
         <div className="mb-4 flex flex-col">
@@ -95,14 +95,14 @@ const Login = () => {
             name="password"
             required
             autoComplete="current-password"
-            className="rounded bg-gray-100 p-2"
+            className="rounded bg-custom-secondary-light p-2"
           />
         </div>
 
         <button
           type="submit"
           disabled={busy}
-          className="flex items-center gap-2 rounded-2xl bg-black p-3 text-white"
+          className="flex items-center gap-2 rounded-2xl bg-custom-accent p-3"
         >
           {busy ? (
             <>

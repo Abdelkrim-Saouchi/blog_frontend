@@ -32,7 +32,7 @@ const SingUp = () => {
   const busy = navigation.state === "submitting";
 
   return (
-    <main className="flex flex-col items-center p-4">
+    <main className="flex min-h-dvh flex-col items-center bg-custom-bg p-4 text-custom-text">
       <h2 className="mb-4 text-2xl font-bold">Sign up new user</h2>
 
       {error?.isPasswordMismatch && (
@@ -49,7 +49,7 @@ const SingUp = () => {
 
       <Form
         method="post"
-        className="flex flex-col items-center rounded-lg border border-gray-200 p-4 md:px-8"
+        className="flex flex-col items-center rounded-lg border border-gray-200 bg-custom-primary-light p-4 md:px-8"
       >
         <div className="mb-4 flex flex-col">
           <label htmlFor="username">Username:</label>
@@ -60,7 +60,7 @@ const SingUp = () => {
             placeholder="krimothiazine"
             required
             autoComplete="username"
-            className="rounded bg-gray-100 p-2"
+            className="rounded bg-custom-secondary-light p-2"
           />
         </div>
         <div className="mb-4 flex flex-col">
@@ -70,7 +70,7 @@ const SingUp = () => {
             id="email"
             name="email"
             placeholder="example@mail.com"
-            className="rounded bg-gray-100 p-2"
+            className="rounded bg-custom-secondary-light p-2"
             required
           />
         </div>
@@ -82,7 +82,7 @@ const SingUp = () => {
             name="password"
             required
             autoComplete="new-password"
-            className="rounded bg-gray-100 p-2"
+            className="rounded bg-custom-secondary-light p-2"
           />
         </div>
         <div className="mb-4 flex flex-col">
@@ -93,13 +93,13 @@ const SingUp = () => {
             name="confirmation"
             required
             autoComplete="new-password"
-            className="rounded bg-gray-100 p-2"
+            className="rounded bg-custom-secondary-light p-2"
           />
         </div>
         <button
           type="submit"
           disabled={busy}
-          className="flex items-center gap-2 rounded-2xl bg-black p-3 text-white"
+          className="flex items-center gap-2 rounded-2xl bg-custom-accent p-3"
         >
           {busy ? (
             <>
