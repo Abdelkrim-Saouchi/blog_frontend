@@ -1,1 +1,1 @@
-export const hostname = "http://localhost:3000";
+export const hostname = "https://myblog-backend-b5ke.onrender.com";
