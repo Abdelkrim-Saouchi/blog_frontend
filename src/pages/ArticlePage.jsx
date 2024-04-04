@@ -66,7 +66,11 @@ const ArticlePage = () => {
           commentsNumber={article.comments.length}
         />
         {article.imgURL && (
-          <img src={article.imgURL} alt="article" className="mb-8" />
+          <img
+            src={article.imgURL}
+            alt="article"
+            className="mb-8 max-h-[600px]"
+          />
         )}
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
