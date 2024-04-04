@@ -62,14 +62,26 @@ const Header = ({ token }) => {
             </>
           )}
           {token && (
-            <li>
-              <fetcher.Form method="post" action="/">
-                <button className="flex items-center gap-1 hover:opacity-70">
-                  Logout
-                  <span className="icon-[mdi--exit-run] text-xl"></span>
-                </button>
-              </fetcher.Form>
-            </li>
+            <>
+              <li>
+                <a
+                  href="https://author-krimo-blog.netlify.app/"
+                  target="_blank"
+                  className="flex items-center gap-1 hover:opacity-70 "
+                >
+                  Write
+                  <span className="icon-[ph--note-pencil-thin] text-xl"></span>
+                </a>
+              </li>
+              <li>
+                <fetcher.Form method="post" action="/">
+                  <button className="flex items-center gap-1 hover:opacity-70">
+                    Logout
+                    <span className="icon-[mdi--exit-run] text-xl"></span>
+                  </button>
+                </fetcher.Form>
+              </li>
+            </>
           )}
         </ul>
       </nav>
