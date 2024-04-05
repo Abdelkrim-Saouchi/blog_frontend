@@ -74,7 +74,7 @@ const ArticlePage = () => {
         )}
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
-          className="pose-pre:w-full prose prose-sm max-w-full leading-relaxed md:prose-base prose-code:w-full prose-pre:overflow-x-auto prose-pre:scroll-smooth prose-pre:whitespace-pre-wrap prose-pre:break-all"
+          className="prose prose-sm max-w-full leading-relaxed md:prose-base prose-pre:whitespace-pre-wrap prose-pre:break-words"
         ></div>
         <div className="my-8">
           {article.topics.map((topic) => (
