@@ -50,6 +50,15 @@ const Header = ({ token }) => {
           {!token && (
             <>
               <li>
+                <Link
+                  to="/"
+                  className="flex items-center gap-1 hover:opacity-70 "
+                >
+                  Home
+                  <span className="icon-[ph--house] text-xl"></span>
+                </Link>
+              </li>
+              <li>
                 <Link to="/login" className="hover:opacity-70 ">
                   Login
                 </Link>
@@ -63,6 +72,15 @@ const Header = ({ token }) => {
           )}
           {token && (
             <>
+              <li>
+                <Link
+                  to="/"
+                  className="flex items-center gap-1 hover:opacity-70 "
+                >
+                  Home
+                  <span className="icon-[ph--house] text-xl"></span>
+                </Link>
+              </li>
               <li>
                 <a
                   href="https://author-krimo-blog.netlify.app/"
@@ -99,16 +117,34 @@ const Header = ({ token }) => {
           <ul className="flex flex-col gap-4 font-semibold">
             {!token && (
               <>
-                <li onClick={toggleMenu} className="p-2 hover:bg-slate-200">
+                <li>
+                  <Link
+                    to="/"
+                    className="flex items-center gap-1 hover:opacity-70 "
+                  >
+                    Home
+                    <span className="icon-[ph--house] text-xl"></span>
+                  </Link>
+                </li>
+                <li onClick={toggleMenu} className="hover:bg-slate-200">
                   <Link to="/login">Login</Link>
                 </li>
-                <li onClick={toggleMenu} className="p-2 hover:bg-slate-200">
+                <li onClick={toggleMenu} className="hover:bg-slate-200">
                   <Link to="/singup">Sign up</Link>
                 </li>
               </>
             )}
             {token && (
               <>
+                <li>
+                  <Link
+                    to="/"
+                    className="flex items-center gap-1 hover:opacity-70 "
+                  >
+                    Home
+                    <span className="icon-[ph--house] text-xl"></span>
+                  </Link>
+                </li>
                 <li>
                   <a
                     href="https://author-krimo-blog.netlify.app/"
