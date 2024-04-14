@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-json/brandico": "^1.1.8",
     "@iconify-json/game-icons": "^1.1.7",
     "@iconify-json/ic": "^1.1.17",
     "@iconify-json/material-symbols": "^1.1.72",
