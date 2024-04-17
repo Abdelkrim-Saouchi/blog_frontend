@@ -1,5 +1,6 @@
 import {
   Form,
+  Link,
   redirect,
   useActionData,
   useLocation,
@@ -44,14 +45,14 @@ const Login = () => {
   const busy = navigation.state === "submitting";
 
   return (
-    <main className="flex min-h-dvh flex-col items-center bg-custom-bg p-4 text-custom-text">
+    <main className="flex min-h-dvh flex-col items-center bg-custom-bg p-6 text-custom-text">
       {location.state?._isRedirect && (
-        <p className="mb-4 text-xl font-semibold text-green-600">
+        <p className="mb-6 text-xl font-semibold text-green-600">
           Your Sign up was successful. You can login now.
         </p>
       )}
 
-      <h2 className="mb-4 text-2xl font-bold">Login:</h2>
+      <h2 className="mb-6 text-2xl font-bold">Login:</h2>
 
       {error?.isLoginError && (
         <p className="mb-4 text-red-600">Email or password incorrect!</p>
@@ -73,10 +74,12 @@ const Login = () => {
 
       <Form
         method="post"
-        className="flex flex-col items-center rounded-lg border border-gray-200 bg-custom-primary-light  p-4 md:px-8"
+        className="flex flex-col items-center gap-4 rounded-lg border-2 border-custom-text bg-custom-primary-lighten p-4 drop-shadow-3xl md:px-8"
       >
-        <div className="mb-4 flex flex-col">
-          <label htmlFor="email">Email:</label>
+        <div className="flex flex-col">
+          <label htmlFor="email" className="font-semibold">
+            Email:
+          </label>
           <input
             type="email"
             id="email"
@@ -84,34 +87,46 @@ const Login = () => {
             placeholder="example@mail.com"
             required
             autoComplete="username"
-            className="rounded bg-custom-secondary-light p-2"
+            className="rounded border border-custom-text bg-custom-secondary/40 p-2 placeholder:text-custom-text"
           />
         </div>
-        <div className="mb-4 flex flex-col">
-          <label htmlFor="password">Password:</label>
+        <div className="flex flex-col">
+          <label htmlFor="password" className="font-semibold">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
             name="password"
             required
             autoComplete="current-password"
-            className="rounded bg-custom-secondary-light p-2"
+            className="rounded border border-custom-text bg-custom-secondary/40 p-2"
           />
+        </div>
+
+        <div className="flex items-center justify-between self-stretch">
+          <p>Don't have account?</p>
+          <Link
+            to="/singup"
+            className="text-custom-accent-darken hover:underline"
+          >
+            Sign up
+          </Link>
         </div>
 
         <button
           type="submit"
           disabled={busy}
-          className="flex items-center gap-2 rounded-2xl bg-custom-accent p-3"
+          className="flex items-center justify-center gap-2 self-stretch rounded-2xl border border-custom-text bg-custom-secondary/40 p-2 text-lg font-semibold hover:bg-custom-accent"
         >
           {busy ? (
             <>
               {" "}
               <span className="icon-[ph--spinner-gap-light] animate-spin"></span>
-              Logging{" "}
+              LOGINING{" "}
             </>
           ) : (
-            "Login"
+            "LOGIN"
           )}
         </button>
       </Form>
