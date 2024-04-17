@@ -43,38 +43,36 @@ const SearchPage = () => {
 
   return (
     <main className="min-h-dvh bg-custom-bg px-4 py-2 pt-4 text-custom-text md:px-40">
-      <Form className="flex flex-col gap-2">
-        <label className="text-2xl font-semibold">
-          Search articles by title:
-        </label>
-        <div className="flex items-center rounded-lg border border-gray-100 bg-custom-secondary-light  p-2 text-gray-600 focus-within:ring md:w-1/3">
+      <h2 className="my-6 text-2xl font-bold">Search articles:</h2>
+      <Form className="mb-6 flex flex-wrap items-center gap-6">
+        <label className="text-xl font-semibold">By title:</label>
+        <div className="flex items-center rounded-lg border border-custom-text bg-custom-secondary/40 px-4 text-custom-text focus-within:ring md:w-1/3">
           {!searching ? (
-            <span className="icon-[mdi--search] text-2xl text-gray-600"></span>
+            <span className="icon-[mdi--search] text-2xl text-custom-text"></span>
           ) : (
-            <span className="icon-[ph--spinner-gap-light] animate-spin text-2xl text-inherit"></span>
+            <span className="icon-[ph--spinner-gap-light] animate-spin text-2xl text-custom-accent"></span>
           )}
           <input
             type="search"
             name="search"
             id="search"
-            placeholder="Title"
+            placeholder="Articles's title"
             defaultValue={search}
             onChange={(e) => {
               const isFirstSearch = search == null;
               submit(e.currentTarget.form, { replace: !isFirstSearch });
             }}
-            className="ml-2 w-full bg-custom-secondary-light  outline-none focus:outline-none"
+            className="ml-2 w-full bg-transparent px-4 py-2 outline-none focus:outline-none"
           />
         </div>
       </Form>
-      <p className="mt-2 font-semibold text-custom-accent">
+      <p className="mb-6 mt-2 font-semibold text-custom-accent">
         Results: {articles.length}
       </p>
-      <hr />
       {searching && (
-        <span className="icon-[ph--spinner-gap-light] animate-spin text-5xl text-gray-600"></span>
+        <span className="icon-[ph--spinner-gap-light] animate-spin text-5xl text-custom-accent"></span>
       )}
-      <div className="pt-4">
+      <div className="mb-6 pt-4">
         {!searching &&
           articles.map((article) => (
             <ArticleCard key={article._id} post={article} />
