@@ -34,7 +34,7 @@ const ArticleCard = ({ post }) => {
           {post.topics.map((topic) => (
             <span
               key={topic.name}
-              className="rounded-lg border border-custom-text bg-custom-secondary px-4 py-2"
+              className="rounded-lg border border-custom-text bg-custom-secondary/40 px-4 py-2"
             >
               {topic.name}
             </span>
@@ -52,7 +52,7 @@ const ArticleCard = ({ post }) => {
         {post.topics.map((topic) => (
           <span
             key={topic.name}
-            className="rounded-lg border border-custom-text bg-custom-secondary px-4 py-2"
+            className="rounded-lg border border-custom-text bg-custom-secondary/50 px-4 py-2"
           >
             {topic.name}
           </span>
