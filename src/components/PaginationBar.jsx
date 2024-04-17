@@ -35,7 +35,7 @@ const PaginationBar = ({ totalPages, currentPage }) => {
     );
   }
   return (
-    <div className="mb-6 mt-auto">
+    <div className="mb-6 mt-auto block">
       <div className="border-collapse">{buttons}</div>
     </div>
   );

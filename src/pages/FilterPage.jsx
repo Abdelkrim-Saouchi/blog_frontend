@@ -58,9 +58,9 @@ const FilterPage = () => {
           Topics
         </Link>
       </div>
-      <h2 className="text-2xl font-semibold">Filter articles by topics:</h2>
+      <h2 className="text-xl">Filter articles by topics:</h2>
       <Form>
-        <div className="my-4 flex gap-4 overflow-x-auto rounded border-2 border-slate-400 p-4">
+        <div className="my-4 mb-8 flex gap-4 overflow-x-auto rounded-lg border-2 border-custom-text p-4">
           {topicsData.topics.map((topic) => (
             <button
               key={topic._id}
@@ -68,8 +68,8 @@ const FilterPage = () => {
               value={topic._id}
               className={
                 topics.includes(topic._id)
-                  ? " min-w-max rounded-xl border bg-custom-primary p-2 shadow"
-                  : " min-w-max rounded-xl border p-2 shadow "
+                  ? "shadowder-custom-text min-w-max rounded-full border border-custom-text bg-custom-primary-lighten px-4 py-2 shadow"
+                  : "shadowder-custom-text min-w-max rounded-full border border-custom-text bg-custom-secondary/40 px-4 py-2 shadow"
               }
             >
               {topic.name}
@@ -87,7 +87,7 @@ const FilterPage = () => {
       {searching && (
         <span className="icon-[ph--spinner-gap-light] animate-spin text-4xl text-gray-600"></span>
       )}
-      <div>
+      <div className="mb-6 flex flex-col gap-6">
         {!searching &&
           articles.map((article) => (
             <ArticleCard key={article._id} post={article} />
@@ -95,10 +95,12 @@ const FilterPage = () => {
       </div>
 
       {!searching && articles.length > 0 && (
-        <PaginationBar
-          totalPages={Number(totalPages)}
-          currentPage={Number(currentPage)}
-        />
+        <div className="mb-9">
+          <PaginationBar
+            totalPages={Number(totalPages)}
+            currentPage={Number(currentPage)}
+          />
+        </div>
       )}
     </main>
   );
