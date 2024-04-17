@@ -45,7 +45,7 @@ const FilterPage = () => {
   }, [topic]);
 
   return (
-    <main className="min-h-dvh space-y-4 bg-custom-bg px-4 py-2 pt-4 md:px-40">
+    <main className="min-h-dvh space-y-4 bg-custom-bg px-4 py-2 pt-4 text-custom-text md:px-40">
       <div className="my-6 flex items-center gap-6 pb-4">
         <span className="icon-[mdi--stars-outline] text-2xl text-custom-accent"></span>
         <Link to="/" className="text-lg font-bold">
@@ -53,7 +53,7 @@ const FilterPage = () => {
         </Link>
         <Link
           to="/filter"
-          className="relative text-lg font-bold text-custom-text after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-full after:bg-custom-accent"
+          className="relative text-lg font-bold text-custom-text after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-full after:rounded-xl after:bg-custom-accent"
         >
           Topics
         </Link>
@@ -84,8 +84,9 @@ const FilterPage = () => {
           defaultValue={topics.join(";")}
         />
       </Form>
+      <p>Results: {articles.length}</p>
       {searching && (
-        <span className="icon-[ph--spinner-gap-light] animate-spin text-4xl text-gray-600"></span>
+        <span className="icon-[ph--spinner-gap-light] animate-spin text-4xl text-custom-accent"></span>
       )}
       <div className="mb-6 flex flex-col gap-6">
         {!searching &&

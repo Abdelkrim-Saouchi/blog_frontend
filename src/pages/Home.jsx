@@ -25,7 +25,7 @@ const Home = () => {
         <span className="icon-[mdi--stars-outline] text-2xl text-custom-accent"></span>
         <Link
           to="/"
-          className="relative text-lg font-bold text-custom-text after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-full after:bg-custom-accent"
+          className="relative text-lg font-bold text-custom-text after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-full after:rounded-xl after:bg-custom-accent"
         >
           All
         </Link>
