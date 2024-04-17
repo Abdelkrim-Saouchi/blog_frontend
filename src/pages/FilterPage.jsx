@@ -46,12 +46,15 @@ const FilterPage = () => {
 
   return (
     <main className="min-h-dvh space-y-4 bg-custom-bg px-4 py-2 pt-4 md:px-40">
-      <div className="flex items-center gap-6 border-b border-gray-200 pb-4 opacity-70">
-        <span className="icon-[ph--plus-thin] text-lg text-custom-accent"></span>
-        <Link to="/" className="text-lg">
-          For you
+      <div className="my-6 flex items-center gap-6 pb-4">
+        <span className="icon-[mdi--stars-outline] text-2xl text-custom-accent"></span>
+        <Link to="/" className="text-lg font-bold">
+          All
         </Link>
-        <Link to="/filter" className="text-lg font-bold">
+        <Link
+          to="/filter"
+          className="relative text-lg font-bold text-custom-text after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-full after:bg-custom-accent"
+        >
           Topics
         </Link>
       </div>

@@ -33,33 +33,33 @@ const SortBy = () => {
   }, []);
 
   return (
-    <div className="relative mt-4 flex gap-4">
-      <div className="font-semibold">Sort by:</div>
+    <div className="relative z-50 mt-4 flex items-center gap-4 text-lg text-custom-text">
+      <div className="text-lg">Sort by:</div>
       <div>
         <button
           onClick={toggleSortList}
-          className=" flex items-center rounded-lg bg-custom-accent px-4 py-1"
+          className="flex items-center rounded-lg border border-custom-text bg-custom-primary/50 px-4 py-1"
         >
           {searchParams.get("sortBy")
             ? searchParams.get("sortBy") === "likes"
               ? "Most likes"
               : "Most comments"
-            : "None"}
-          <span className="icon-[ic--outline-keyboard-arrow-down]"></span>
+            : "Disabled"}
+          <span className="icon-[mdi--arrow-down-drop-circle-outline] ml-2 text-xl"></span>
         </button>
         <div
           ref={sortList}
-          className="absolute flex hidden flex-col gap-2 border bg-white p-2"
+          className="absolute flex hidden flex-col gap-2 border border-custom-text bg-white p-2 shadow-lg"
         >
           <button
             onClick={() => handleOnOptionClick("sortBy", "likes")}
-            className="px-1 text-start hover:bg-custom-secondary-light"
+            className="hover:bg-custom-secondary-light px-1 text-start"
           >
             Most likes
           </button>
           <button
             onClick={() => handleOnOptionClick("sortBy", "comments")}
-            className="px-1 text-start hover:bg-custom-secondary-light "
+            className="hover:bg-custom-secondary-light px-1 text-start "
           >
             Most comments
           </button>

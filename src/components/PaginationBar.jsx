@@ -26,8 +26,8 @@ const PaginationBar = ({ totalPages, currentPage }) => {
         disabled={i === currentPage || busy}
         className={
           i === currentPage
-            ? "border bg-custom-accent px-4 py-1"
-            : "border px-4 py-1 "
+            ? "border border-custom-text bg-custom-accent px-4 py-1"
+            : "border border-custom-text px-4 py-1 "
         }
       >
         {i}
@@ -35,8 +35,8 @@ const PaginationBar = ({ totalPages, currentPage }) => {
     );
   }
   return (
-    <div className="mt-auto">
-      <div>{buttons}</div>
+    <div className="mb-6 mt-auto">
+      <div className="border-collapse">{buttons}</div>
     </div>
   );
 };

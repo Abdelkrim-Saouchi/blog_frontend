@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Header from "./Header";
 import { useEffect, useState } from "react";
+import Footer from "./Footer";
 
 export const loader = () => {
   const token = localStorage.getItem("jwt-token");
@@ -43,6 +44,7 @@ const Root = () => {
       >
         <Outlet context={{ token, setToken }} />
       </div>
+      <Footer />
     </>
   );
 };

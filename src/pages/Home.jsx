@@ -21,17 +21,21 @@ const Home = () => {
 
   return (
     <main className="min-h-dvh bg-custom-bg px-4 py-2 pt-4 text-custom-text md:px-40">
-      <div className="flex items-center gap-6 border-b border-gray-200 pb-4 opacity-70">
-        <span className="icon-[ph--plus-thin] text-lg text-custom-accent"></span>
-        <Link to="/" className="text-lg font-bold ">
-          For you
+      <div className="my-6 flex items-center gap-6 pb-4">
+        <span className="icon-[mdi--stars-outline] text-2xl text-custom-accent"></span>
+        <Link
+          to="/"
+          className="relative text-lg font-bold text-custom-text after:absolute after:-bottom-1 after:left-0 after:h-1 after:w-full after:bg-custom-accent"
+        >
+          All
         </Link>
-        <Link to="/filter" className="text-lg">
+        <Link to="/filter" className="text-lg font-bold">
           Topics
         </Link>
       </div>
       <SortBy />
-      <div className=" pt-8">
+      <hr className="my-6" />
+      <div className="mb-6 flex flex-col gap-6">
         {articles.map((article) => (
           <ArticleCard key={article._id} post={article} />
         ))}
