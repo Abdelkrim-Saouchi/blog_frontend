@@ -15,8 +15,10 @@ const CommentsSection = ({ comments }) => {
   const isOk = fetcher.data ? fetcher.data.ok : true;
 
   return (
-    <section className="pb-9" id="comments">
-      <h3 className="mb-4 text-xl font-bold md:text-2xl">Leave a comment:</h3>
+    <section className="pb-9 text-custom-text" id="comments">
+      <h3 className="mb-4 text-xl font-bold md:text-2xl">
+        Leave a comment ...
+      </h3>
       {token && (
         <fetcher.Form
           method="post"
@@ -27,7 +29,7 @@ const CommentsSection = ({ comments }) => {
             name="commentText"
             id="comment"
             rows="5"
-            className="mb-4 rounded border border-gray-200 p-3 shadow-lg"
+            className="mb-4 rounded border border-custom-text p-3 shadow-lg"
             required
             disabled={busy}
           ></textarea>
@@ -36,7 +38,7 @@ const CommentsSection = ({ comments }) => {
             name="commentBtn"
             value="create"
             disabled={busy}
-            className="flex items-center gap-2 self-start rounded bg-custom-accent p-3 "
+            className="flex items-center gap-2 self-start rounded-lg border border-custom-text bg-custom-secondary/40 px-4 py-3 hover:bg-custom-accent "
           >
             {busy ? (
               <>
@@ -51,13 +53,13 @@ const CommentsSection = ({ comments }) => {
       )}
 
       {!token && (
-        <div className="mb-4 flex flex-col rounded border border-red-200 p-3 text-center text-red-600">
+        <div className="mb-4 flex flex-col rounded border border-custom-text p-3 text-center text-red-600">
           <p className="mb-4">
             You are not log in. You must log in to comment this article
           </p>
           <Link
             to="/login"
-            className="block w-fit self-center rounded-lg bg-custom-accent p-2 px-8 text-custom-text"
+            className="block w-fit self-center rounded-full border border-custom-text bg-custom-secondary/40 p-2 px-8 text-custom-text hover:bg-custom-accent"
           >
             Log in
           </Link>
@@ -74,8 +76,8 @@ const CommentsSection = ({ comments }) => {
       {comments.length === 0 && (
         <p className="my-4 italic text-gray-400">No comments</p>
       )}
-      <hr className="mb-8 border" />
-      <div className="mb-6 flex flex-col gap-4 rounded-lg bg-custom-secondary-light shadow-lg">
+      <hr className="mb-8 mt-2 border" />
+      <div className="bg-custom-secondary-light mb-6 flex flex-col gap-4 rounded-lg shadow-lg">
         {comments.map((comment) => (
           <Comment key={comment._id} comment={comment} />
         ))}

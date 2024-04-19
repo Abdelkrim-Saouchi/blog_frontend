@@ -56,7 +56,7 @@ const ArticlePage = () => {
               {article.author.firstName} {article.author.lastName}
             </p>
           </div>
-          <div className="gap-2 text-gray-500">
+          <div className="gap-2 text-custom-text">
             <span>{article.readTime} min read</span> .{" "}
             <span>{article.creationDate}</span>
           </div>
@@ -80,7 +80,7 @@ const ArticlePage = () => {
           {article.topics.map((topic) => (
             <span
               key={topic._id}
-              className="rounded-lg bg-custom-primary p-2 text-lg "
+              className="rounded-full border border-custom-text bg-custom-secondary/40 px-4 py-2 text-lg "
             >
               {topic.name}
             </span>

@@ -34,7 +34,7 @@ const UpdateComment = () => {
   };
 
   return (
-    <div className="fixed z-10 flex flex-col items-center justify-center gap-4 rounded bg-slate-200 p-4 text-custom-text shadow-lg">
+    <div className="fixed z-10 flex flex-col items-center justify-center gap-4 rounded border border-custom-text bg-custom-secondary/40 p-4 text-custom-text shadow-lg">
       <div>
         <Form method="post" className="mb-6 flex resize-y flex-col gap-2">
           <textarea
@@ -42,7 +42,7 @@ const UpdateComment = () => {
             id="comment"
             rows="5"
             defaultValue={data.content}
-            className="rounded border border-gray-200 p-3"
+            className="mb-2 rounded border border-custom-text p-3"
             required
           ></textarea>
           <div className="flex gap-4">
@@ -50,7 +50,7 @@ const UpdateComment = () => {
               type="submit"
               name="commentBtn"
               value="update"
-              className="flex items-center gap-2 self-start rounded bg-custom-accent p-3"
+              className="flex items-center gap-2 self-start rounded-lg border border-custom-text bg-custom-primary p-3"
             >
               {busy ? (
                 <>
@@ -64,7 +64,7 @@ const UpdateComment = () => {
             <button
               type="button"
               onClick={cancel}
-              className="flex items-center gap-2 self-start rounded bg-custom-accent p-3"
+              className="flex items-center gap-2 self-start rounded-lg border border-custom-text bg-custom-accent p-3"
             >
               Cancel
             </button>

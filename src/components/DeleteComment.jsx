@@ -18,7 +18,7 @@ const DeleteComment = () => {
   };
 
   return (
-    <div className="fixed z-10 flex flex-col items-center justify-center gap-4 rounded bg-slate-200 p-4 text-custom-text shadow-lg">
+    <div className="fixed z-10 flex flex-col items-center justify-center gap-4 rounded border border-custom-text bg-custom-secondary/40 p-4 text-custom-text shadow-lg">
       <p className="text-2xl font-bold">Are you sure to delete this comment?</p>
       <div className="flex justify-center gap-2">
         <Form method="post">
@@ -26,7 +26,7 @@ const DeleteComment = () => {
             name="commentBtn"
             value="delete"
             disabled={busy}
-            className="flex items-center gap-2 rounded bg-custom-accent p-2 "
+            className="flex items-center gap-2 rounded-lg border border-custom-text bg-custom-primary p-2 "
           >
             {busy ? (
               <>
@@ -38,7 +38,10 @@ const DeleteComment = () => {
             )}
           </button>
         </Form>
-        <button onClick={cancel} className="rounded bg-custom-accent p-2">
+        <button
+          onClick={cancel}
+          className="rounded-lg border border-custom-text bg-custom-accent p-2"
+        >
           No
         </button>
       </div>

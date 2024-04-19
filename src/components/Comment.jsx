@@ -43,8 +43,10 @@ const Comment = ({ comment }) => {
                 : comment.author.firstName[0].toUpperCase()
             }
           />
-          {comment.author?.username ||
-            comment.author.firstName + " " + comment.author.lastName}
+          {comment.author?.username.toUpperCase() ||
+            comment.author.firstName.toUpperCase() +
+              " " +
+              comment.author.lastName.toUpperCase()}
         </div>
         <div className="text-gray-500">{comment.creationDate}</div>
         {comment.author._id === userId && (

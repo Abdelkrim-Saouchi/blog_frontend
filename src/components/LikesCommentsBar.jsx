@@ -32,7 +32,7 @@ const LikesCommentsBar = ({ likesNumber, commentsNumber }) => {
 
   return (
     <div className="relative my-8 flex gap-4 border-b border-t border-gray-200 p-3">
-      <div className="flex items-center gap-2 text-xl text-gray-500">
+      <div className="flex items-center gap-2 text-xl text-custom-text">
         <fetcher.Form method="post" action={`/articles/${id}`}>
           <button
             className="flex items-center"
@@ -56,7 +56,7 @@ const LikesCommentsBar = ({ likesNumber, commentsNumber }) => {
         </fetcher.Form>
         {likesNumber}
       </div>
-      <div className="flex items-center gap-2 text-xl text-gray-500">
+      <div className="flex items-center gap-2 text-xl text-custom-text">
         <a href="#comments" className="flex items-center">
           <span className="icon-[mdi--comment-outline]"></span>
         </a>
